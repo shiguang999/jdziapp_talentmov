@@ -98,6 +98,30 @@ public class App_Config {
 
 
     /**
+     * 分类筛选页面的形式配置，这个就自己写吧，读服务器没意义，看下影片都有哪些形式
+     */
+    public static final String[] MAIN_CONFIG = {
+            "全部形式",
+            "电影",
+            "电视剧",
+            "动漫",
+            "综艺"
+    };
+
+    /**
+     * 分类筛选页面的年代配置，这个就自己写吧，读服务器没意义
+     */
+    public static final String[] YEAR_CONFIG = {
+            "全部年代",
+            "2020",
+            "2019",
+            "2018",
+            "2017",
+            "2016",
+            "2016以前"
+    };
+
+    /**
      * 分类筛选页面的地区配置，这个就自己写吧，读服务器没意义，看下影片都有哪些地区
      */
     public static final String[] AREA_CONFIG = {

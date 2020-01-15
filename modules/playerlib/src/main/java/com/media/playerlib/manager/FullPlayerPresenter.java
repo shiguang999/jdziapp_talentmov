@@ -255,6 +255,7 @@ public class FullPlayerPresenter {
 
             toggleFull();
         } else {
+            System.out.println("=====================================================================返回键事件及纳入了else");
             ((Activity) context).onBackPressed();
         }
     }
@@ -364,6 +365,7 @@ public class FullPlayerPresenter {
         if (mAssist != null) {
             mAssist.pause();
 
+            System.out.println("=====================================================================选集切换");
             refreshStartPosition(url);
 
             DataSource dataSource = new DataSource(url);

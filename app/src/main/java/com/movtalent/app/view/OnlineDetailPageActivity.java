@@ -161,7 +161,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         detailContent.setAdapter(detailAdapter);
 
         detailAdapter.register(DetailDescSection.class, new DetailDescSectionViewBinder());
-        detailAdapter.register(DetailAdSection.class, new DetailAdSectionViewBinder());
+        detailAdapter.register(DetailAdSection.class, new DetailAdSectionViewBinder());// 播放页广告
         detailAdapter.register(DetailPlaySection.class, new DetailPlaySectionViewBinder());
         detailAdapter.register(DetailRecmmendSection.class, new DetailRecmmendSectionViewBinder());
         detailAdapter.register(FooterView.class, new FooterViewViewBinder());
@@ -280,7 +280,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         });
         items.add(detailDescSection);
         detailAdapter.notifyItemChanged(0);
-        items.add(new DetailAdSection());
+//        items.add(new DetailAdSection());
         detailAdapter.notifyItemChanged(1);
     }
 

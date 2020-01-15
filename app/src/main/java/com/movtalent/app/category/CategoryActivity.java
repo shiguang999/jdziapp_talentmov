@@ -94,21 +94,14 @@ public class CategoryActivity extends AppCompatActivity {
         requestArea = "";
         requestYear = 0;
 
-        String[] mainTab = {
-                "全部形式", "电影", "电视剧", "动漫", "综艺"};
-
+        // 形式
+        String[] mainTab =  App_Config.AREA_CONFIG;
 
         //地区都一样
         String[] areaTabMov = App_Config.AREA_CONFIG;
 
-        String[] yearTab = {
-                "全部年代",
-                "2019",
-                "2018",
-                "2017",
-                "2016",
-                "2016以前",
-        };
+        // 年代
+        String[] yearTab = App_Config.YEAR_CONFIG;
         /**
          * 类型是根据主tab动态改变的
          */

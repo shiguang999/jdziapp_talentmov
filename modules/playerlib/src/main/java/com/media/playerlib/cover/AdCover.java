@@ -134,6 +134,11 @@ public class AdCover extends BaseCover implements OnTimerUpdateListener {
         setLoadingState(false);
     }
 
+    /**
+     * 加载 播放器广告
+     * @param eventCode
+     * @param bundle
+     */
     @Override
     public void onReceiverEvent(int eventCode, Bundle bundle) {
         if (eventCode == DataInter.Event.KEY_SHOW_AD) {

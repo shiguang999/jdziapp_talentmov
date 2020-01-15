@@ -419,7 +419,7 @@ public class PlayerPresenter {
 
     private void resetAdCover() {
         mAssist.reset();
-        receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AD_COVER, new AdCover(context));
+        receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AD_COVER, new AdCover(context)); // 播放器广告
         dispatcher.dispatchReceiverEvent(DataInter.Event.KEY_SHOW_AD, null);
 //        dispatcher.dispatchReceiverEvent(DataInter.Event.RESTART_PLAY, null);
 

@@ -81,7 +81,7 @@ public class SelfTabFragment extends Fragment {
 
         multiTypeAdapter.register(SelfHeadView.class, new SelfHeadViewViewBinder());
         multiTypeAdapter.register(SelfBodyView.class, new SelfBodyViewViewBinder());
-        multiTypeAdapter.register(SelfAdSection.class, new SelfAdSectionViewBinder());
+        multiTypeAdapter.register(SelfAdSection.class, new SelfAdSectionViewBinder());// 个人中心广告
 
         items = new ArrayList<>();
 
@@ -92,7 +92,6 @@ public class SelfTabFragment extends Fragment {
 
         items.add(headView);
         items.add(new SelfAdSection());
-
         items.add(new SelfBodyView());
 
 

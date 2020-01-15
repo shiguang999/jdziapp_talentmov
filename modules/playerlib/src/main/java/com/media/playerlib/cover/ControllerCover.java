@@ -449,6 +449,7 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
         }
     }
 
+    // 显示进度条/隐藏进度条
     private void setBottomContainerState(final boolean state) {
         mBottomContainer.clearAnimation();
         cancelBottomAnimation();
@@ -716,7 +717,10 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
             mStateIcon.setSelected(!selected);
 
         } else if (i == R.id.chose_list) {
+            //选集
             showChoseListWindow();
+            setControllerState(false);
+            setLockIconState(false);
         } else if (i == R.id.speed_up) {
             //倍速
             showSpeedUpWindow();
@@ -815,9 +819,8 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
         mClarityDialog.show();
     }
 
+    // 全屏选集
     private void showChoseListWindow() {
-
-
         final AnyLayer anyLayer = AnyLayer.with(getContext())
                 .contentView(R.layout.play_list_layout)
                 .gravity(Gravity.RIGHT)
@@ -865,7 +868,8 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
                     }
                 });
                 anyLayer.dismiss();
-
+                setControllerState(true);
+                setLockIconState(true);
 
             }
         });

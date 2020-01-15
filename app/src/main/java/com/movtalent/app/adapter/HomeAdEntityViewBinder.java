@@ -32,6 +32,11 @@ public class HomeAdEntityViewBinder extends ItemViewBinder<HomeAdEntity, HomeAdE
         return new ViewHolder(root);
     }
 
+    /**
+     * 加载 ad_home_1到ad_home_4   推荐页广告
+     * @param holder
+     * @param homeAdEntity
+     */
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull HomeAdEntity homeAdEntity) {
         if (TextUtils.isEmpty(GlobalDATA.AD_INFO)) {

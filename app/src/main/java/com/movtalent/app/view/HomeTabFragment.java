@@ -109,7 +109,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
         adapter.register(Category.class, new CategoryViewBinder());
         adapter.register(VideoListDto.DataBean.class, new ItemVideosViewBinder());
         adapter.register(FooterView.class, new FooterViewViewBinder());
-        adapter.register(HomeAdEntity.class, new HomeAdEntityViewBinder());
+        adapter.register(HomeAdEntity.class, new HomeAdEntityViewBinder()); // 推荐页广告
 
         homeRv.setAdapter(adapter);
 
@@ -139,7 +139,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
                 items.addAll(videoVos.getData().getLe1());
             }
 
-            items.add(new HomeAdEntity(0));
+//            items.add(new HomeAdEntity(0));
 
             if (videoVos.getData().getLe2() != null && videoVos.getData().getLe2().size() > 0) {
                 items.add(new Category("火热更新，好剧不断", v -> {
@@ -148,7 +148,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
                 items.addAll(videoVos.getData().getLe2());
             }
 
-            items.add(new HomeAdEntity(1));
+//            items.add(new HomeAdEntity(1));
 
             if (videoVos.getData().getLe3() != null && videoVos.getData().getLe3().size() > 0) {
                 items.add(new Category("最新电视剧", v -> {
@@ -157,7 +157,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
                 items.addAll(videoVos.getData().getLe3());
             }
 
-            items.add(new HomeAdEntity(2));
+//            items.add(new HomeAdEntity(2));
 
             if (videoVos.getData().getLe4() != null && videoVos.getData().getLe4().size() > 0) {
                 items.add(new Category("最新动漫", v -> {
@@ -165,7 +165,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
                 }));
                 items.addAll(videoVos.getData().getLe4());
             }
-            items.add(new HomeAdEntity(3));
+//            items.add(new HomeAdEntity(3));
 
             if (videoVos.getData().getLe5() != null && videoVos.getData().getLe5().size() > 0) {
                 items.add(new Category("最新综艺", v -> {

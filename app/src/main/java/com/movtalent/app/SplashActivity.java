@@ -84,6 +84,9 @@ public class SplashActivity extends AppCompatActivity implements ITypeView {
 
     }
 
+    /**
+     * 加载开屏广告
+     */
     @Override
     public void loadAdDone() {
         if (!TextUtils.isEmpty(GlobalDATA.AD_INFO)) {

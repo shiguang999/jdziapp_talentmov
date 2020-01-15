@@ -31,6 +31,11 @@ public class DetailAdSectionViewBinder extends ItemViewBinder<DetailAdSection, D
         return new ViewHolder(root);
     }
 
+    /**
+     * 加载 播放页广告
+     * @param holder
+     * @param detailAdEntity
+     */
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull DetailAdSection detailAdEntity) {
         if (TextUtils.isEmpty(GlobalDATA.AD_INFO)) {

@@ -31,6 +31,11 @@ public class SelfAdSectionViewBinder extends ItemViewBinder<SelfAdSection, SelfA
         return new ViewHolder(root);
     }
 
+    /**
+     * 加载个人中心广告
+     * @param holder
+     * @param selfAdSection
+     */
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull SelfAdSection selfAdSection) {
         ImageView imageView = new ImageView(holder.itemView.getContext());
