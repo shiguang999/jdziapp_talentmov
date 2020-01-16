@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.media.playerlib.model.AdConfigDto;
+import com.media.playerlib.widget.GlobalDATA;
 import com.movtalent.app.App_Config;
 import com.movtalent.app.R;
 import com.movtalent.app.adapter.user.SelfAdSection;
@@ -71,6 +73,7 @@ public class SelfTabFragment extends Fragment {
     }
 
     private void initView() {
+        AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
         backup.setVisibility(View.GONE);
 
 
@@ -91,7 +94,7 @@ public class SelfTabFragment extends Fragment {
         headView = new SelfHeadView("", "test", coin, onloginListener);
 
         items.add(headView);
-        items.add(new SelfAdSection());
+        if(dataBean.getAd_user_center().getShow()) items.add(new SelfAdSection());
         items.add(new SelfBodyView());
 
 

@@ -13,6 +13,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.media.playerlib.model.AdConfigDto;
+import com.media.playerlib.widget.GlobalDATA;
 import com.movtalent.app.R;
 import com.movtalent.app.adapter.BannerEntity;
 import com.movtalent.app.adapter.BannerEntityViewBinder;
@@ -131,15 +134,15 @@ public class HomeTabFragment extends Fragment implements IHomeView {
     @Override
     public void loadDone(HomeLevelDto videoVos) {
         statusLayoutManager.showSuccessLayout();
-        if (videoVos.getData() != null) {
+        AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
+        if (videoVos.getData() != null && dataBean != null) {
             if (videoVos.getData().getLe1() != null && videoVos.getData().getLe1().size() > 0) {
                 items.add(new Category("品质好剧，必看榜单", v -> {
                     AllLevelActivity.startTo(getContext(), 1);
                 }));
                 items.addAll(videoVos.getData().getLe1());
             }
-
-//            items.add(new HomeAdEntity(0));
+            if(dataBean.getAd_home_1().getShow()) items.add(new HomeAdEntity(0));
 
             if (videoVos.getData().getLe2() != null && videoVos.getData().getLe2().size() > 0) {
                 items.add(new Category("火热更新，好剧不断", v -> {
@@ -148,7 +151,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
                 items.addAll(videoVos.getData().getLe2());
             }
 
-//            items.add(new HomeAdEntity(1));
+            if(dataBean.getAd_home_2().getShow()) items.add(new HomeAdEntity(1));
 
             if (videoVos.getData().getLe3() != null && videoVos.getData().getLe3().size() > 0) {
                 items.add(new Category("最新电视剧", v -> {
@@ -157,7 +160,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
                 items.addAll(videoVos.getData().getLe3());
             }
 
-//            items.add(new HomeAdEntity(2));
+            if(dataBean.getAd_home_3().getShow()) items.add(new HomeAdEntity(2));
 
             if (videoVos.getData().getLe4() != null && videoVos.getData().getLe4().size() > 0) {
                 items.add(new Category("最新动漫", v -> {
@@ -165,7 +168,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
                 }));
                 items.addAll(videoVos.getData().getLe4());
             }
-//            items.add(new HomeAdEntity(3));
+            if(dataBean.getAd_home_4().getShow()) items.add(new HomeAdEntity(3));
 
             if (videoVos.getData().getLe5() != null && videoVos.getData().getLe5().size() > 0) {
                 items.add(new Category("最新综艺", v -> {

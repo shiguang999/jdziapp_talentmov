@@ -10,6 +10,7 @@ public class VipShareItemSectionn {
     private String vipShareContent;
     private String vipShareTitle;
     private int vipShareIcon;
+    private String vipShareCoinDesc;
 
     public String getVipShareTitle() {
         return vipShareTitle;
@@ -23,16 +24,22 @@ public class VipShareItemSectionn {
         return vipShareContent;
     }
 
+    public String getVipShareCoinDesc() {
+        return vipShareCoinDesc;
+    }
+
+
     public VipShareItemSectionnViewBinder.VipShareClickListener getVipShareClickListener() {
         return vipShareClickListener;
     }
 
     private VipShareItemSectionnViewBinder.VipShareClickListener vipShareClickListener;
 
-    public VipShareItemSectionn(String vipShareTitle,int vipShareIcon,String vipShareContent, VipShareItemSectionnViewBinder.VipShareClickListener vipShareClickListener) {
+    public VipShareItemSectionn(String vipShareTitle,int vipShareIcon,String vipShareContent,String vipShareCoinDesc, VipShareItemSectionnViewBinder.VipShareClickListener vipShareClickListener) {
         this.vipShareTitle = vipShareTitle;
         this.vipShareContent = vipShareContent;
         this.vipShareIcon = vipShareIcon;
+        this.vipShareCoinDesc = vipShareCoinDesc;
         this.vipShareClickListener = vipShareClickListener;
     }
 }

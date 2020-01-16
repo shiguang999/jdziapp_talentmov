@@ -50,7 +50,7 @@ public class HomeAdEntityViewBinder extends ItemViewBinder<HomeAdEntity, HomeAdE
             switch (homeAdEntity.getIndex()) {
                 case 0:
                     Glide.with(imageView.getContext()).load(dataBean.getAd_home_1().getImg()).into(imageView);
-                    if (dataBean.getAd_home_1()==null||TextUtils.isEmpty(dataBean.getAd_home_1().getLink())){
+                    if (dataBean.getAd_home_1()==null || TextUtils.isEmpty(dataBean.getAd_home_1().getLink())){
                         return;
                     }
                     holder.itemView.setOnClickListener(new View.OnClickListener() {

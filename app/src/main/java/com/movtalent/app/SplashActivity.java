@@ -3,6 +3,7 @@ package com.movtalent.app;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
@@ -25,6 +26,7 @@ import com.movtalent.app.util.ToastUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * @author huangyong
@@ -43,6 +45,7 @@ public class SplashActivity extends AppCompatActivity implements ITypeView {
     LinearLayout iconAbout;
     @BindView(R.id.time_cut)
     TextView timeCut;
+    private int recLen = 5;//跳过倒计时提示5秒
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,11 +72,12 @@ public class SplashActivity extends AppCompatActivity implements ITypeView {
 
         }, 2000);
 
-        RxCountDown.countdown(5)
+        RxCountDown.countdown(recLen)
                 .doOnSubscribe(disposable -> {
                 })
                 .subscribe(integer -> {
-                    timeCut.setText(integer + "秒");
+                    timeCut.setText("跳过 " + integer + "秒");
+//                    break;
                 }, throwable -> {
 
                 }, () -> {
@@ -81,6 +85,15 @@ public class SplashActivity extends AppCompatActivity implements ITypeView {
                     finish();
                 });
 
+        /*timeCut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //从闪屏界面跳转到首界面
+                startActivity(intent);
+                finish();
+                Schedulers.shutdown();
+            }
+        });*/
 
     }
 
@@ -105,6 +118,7 @@ public class SplashActivity extends AppCompatActivity implements ITypeView {
                         startActivity(intent);
                     }
                 });
+
             }
 
         }

@@ -41,12 +41,14 @@ public class VipShareItemSectionnViewBinder extends ItemViewBinder<VipShareItemS
         TextView shareTitle;
         ImageView vipIcon;
         TextView shareDesc;
+        TextView coinDesc;
         ViewHolder(View itemView) {
             super(itemView);
             toShare = itemView.findViewById(R.id.toShare);
             shareTitle = itemView.findViewById(R.id.share_title);
             vipIcon = itemView.findViewById(R.id.vip_icon);
             shareDesc = itemView.findViewById(R.id.share_desc);
+            coinDesc = itemView.findViewById(R.id.coin_desc);
         }
     }
 

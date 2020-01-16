@@ -40,6 +40,7 @@ import com.media.playerlib.cover.GestureCover;
 import com.media.playerlib.cover.LoadingCover;
 import com.media.playerlib.cover.SmallControllerCover;
 import com.media.playerlib.dlan.DlanListPop;
+import com.media.playerlib.model.AdConfigDto;
 import com.media.playerlib.model.DataInter;
 import com.media.playerlib.model.VideoPlayVo;
 import com.media.playerlib.widget.GlobalDATA;
@@ -418,8 +419,9 @@ public class PlayerPresenter {
     }
 
     private void resetAdCover() {
+        AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
         mAssist.reset();
-        receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AD_COVER, new AdCover(context)); // 播放器广告
+        if(dataBean.getAd_player().getShow()) receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AD_COVER, new AdCover(context)); // 播放器广告
         dispatcher.dispatchReceiverEvent(DataInter.Event.KEY_SHOW_AD, null);
 //        dispatcher.dispatchReceiverEvent(DataInter.Event.RESTART_PLAY, null);
 

@@ -133,6 +133,7 @@ public class AdConfigDto {
 
             private String img;
             private String link;
+            private boolean show;
 
             public String getImg() {
                 return img;
@@ -148,6 +149,14 @@ public class AdConfigDto {
 
             public void setLink(String link) {
                 this.link = link;
+            }
+
+            public boolean getShow() {
+                return show;
+            }
+
+            public void setShow(boolean show) {
+                this.show = show;
             }
         }
 
@@ -159,6 +168,7 @@ public class AdConfigDto {
 
             private String img;
             private String link;
+            private boolean show;
 
             public String getImg() {
                 return img;
@@ -174,6 +184,14 @@ public class AdConfigDto {
 
             public void setLink(String link) {
                 this.link = link;
+            }
+
+            public boolean getShow() {
+                return show;
+            }
+
+            public void setShow(boolean show) {
+                this.show = show;
             }
         }
 
@@ -185,6 +203,7 @@ public class AdConfigDto {
 
             private String img;
             private String link;
+            private boolean show;
 
             public String getImg() {
                 return img;
@@ -200,6 +219,14 @@ public class AdConfigDto {
 
             public void setLink(String link) {
                 this.link = link;
+            }
+
+            public boolean getShow() {
+                return show;
+            }
+
+            public void setShow(boolean show) {
+                this.show = show;
             }
         }
 
@@ -211,6 +238,7 @@ public class AdConfigDto {
 
             private String img;
             private String link;
+            private boolean show;
 
             public String getImg() {
                 return img;
@@ -226,6 +254,14 @@ public class AdConfigDto {
 
             public void setLink(String link) {
                 this.link = link;
+            }
+
+            public boolean getShow() {
+                return show;
+            }
+
+            public void setShow(boolean show) {
+                this.show = show;
             }
         }
 
@@ -237,6 +273,7 @@ public class AdConfigDto {
 
             private String img;
             private String link;
+            private boolean show;
 
             public String getImg() {
                 return img;
@@ -252,6 +289,14 @@ public class AdConfigDto {
 
             public void setLink(String link) {
                 this.link = link;
+            }
+
+            public boolean getShow() {
+                return show;
+            }
+
+            public void setShow(boolean show) {
+                this.show = show;
             }
         }
 
@@ -263,6 +308,7 @@ public class AdConfigDto {
 
             private String img;
             private String link;
+            private boolean show;
 
             public String getImg() {
                 return img;
@@ -278,6 +324,14 @@ public class AdConfigDto {
 
             public void setLink(String link) {
                 this.link = link;
+            }
+
+            public boolean getShow() {
+                return show;
+            }
+
+            public void setShow(boolean show) {
+                this.show = show;
             }
         }
 
@@ -289,6 +343,7 @@ public class AdConfigDto {
 
             private String img;
             private String link;
+            private boolean show;
 
             public String getImg() {
                 return img;
@@ -304,6 +359,14 @@ public class AdConfigDto {
 
             public void setLink(String link) {
                 this.link = link;
+            }
+
+            public boolean getShow() {
+                return show;
+            }
+
+            public void setShow(boolean show) {
+                this.show = show;
             }
         }
 
@@ -315,6 +378,7 @@ public class AdConfigDto {
 
             private String img;
             private String link;
+            private boolean show;
 
             public String getImg() {
                 return img;
@@ -330,6 +394,14 @@ public class AdConfigDto {
 
             public void setLink(String link) {
                 this.link = link;
+            }
+
+            public boolean getShow() {
+                return show;
+            }
+
+            public void setShow(boolean show) {
+                this.show = show;
             }
         }
     }

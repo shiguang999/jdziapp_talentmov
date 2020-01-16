@@ -34,6 +34,7 @@ import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.lib.common.util.DataInter;
 import com.media.playerlib.PlayApp;
 import com.media.playerlib.manager.PlayerPresenter;
+import com.media.playerlib.model.AdConfigDto;
 import com.media.playerlib.model.VideoPlayVo;
 import com.media.playerlib.widget.GlobalDATA;
 import com.movtalent.app.R;
@@ -256,7 +257,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
     }
 
     private void loadDetail(CommonVideoVo commonVideoVo) {
-
+        AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
         DetailDescSection detailDescSection = new DetailDescSection(commonVideoVo, new OnDetailClickListener() {
             @Override
             public void clickReport(String vodId) {
@@ -280,7 +281,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         });
         items.add(detailDescSection);
         detailAdapter.notifyItemChanged(0);
-//        items.add(new DetailAdSection());
+        if(dataBean.getAd_detail().getShow()) items.add(new DetailAdSection());
         detailAdapter.notifyItemChanged(1);
     }
 
