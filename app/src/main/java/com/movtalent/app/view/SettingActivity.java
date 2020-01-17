@@ -241,9 +241,9 @@ public class SettingActivity extends AppCompatActivity {
 
         manager = DownloadManager.getInstance(this);
 
-        manager.setApkName("极光影院.apk")
+        manager.setApkName("金豆子影院.apk")
                 .setApkUrl(dto.getData().getDownloadUrl())
-                .setSmallIcon(R.mipmap.ticon2)
+                .setSmallIcon(R.mipmap.talenta)
                 .setShowNewerToast(true)
                 .setConfiguration(configuration)
 //                .setDownloadPath(Environment.getExternalStorageDirectory() + "/AppUpdate")

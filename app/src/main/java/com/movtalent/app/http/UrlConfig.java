@@ -91,7 +91,6 @@ public class UrlConfig {
     static final String getPublish = App_Config.SERVER_PATH+"public/?service=App.Mov.CheckPubish";
     static final String getADConfig = App_Config.SERVER_PATH+"public/?service=App.Mov.GetAdConfig";
 
-
     /*用户相关*/
     /**
      * 注册

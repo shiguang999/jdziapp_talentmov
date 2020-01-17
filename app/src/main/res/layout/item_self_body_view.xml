@@ -91,43 +91,7 @@
             android:drawablePadding="10dp"
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/dp_10"
-            android:text="预留1" />
-
-
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:id="@+id/self_jump2"
-            android:layout_weight="1"
-            android:drawableTop="@drawable/grid_answer_question_icon"
-            android:drawablePadding="10dp"
-            android:gravity="center_horizontal"
-            android:paddingTop="@dimen/dp_10"
-            android:layout_margin="1px"
-            android:background="@color/white"
-            android:text="预留2" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="80dp"
-            android:layout_margin="1px"
-            android:layout_weight="1"
-            android:id="@+id/self_jump3"
-            android:drawableTop="@drawable/grid_integral_center_icon"
-            android:background="@color/white"
-            android:drawablePadding="10dp"
-            android:gravity="center_horizontal"
-            android:paddingTop="@dimen/dp_10"
-            android:text="预留3" />
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FAF8F8"
-        android:orientation="horizontal">
+            android:text="官网" />
 
         <TextView
             android:layout_width="0dp"
@@ -157,6 +121,14 @@
             android:background="@color/white"
             android:text="投屏助手" />
 
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FAF8F8"
+        android:orientation="horizontal">
+
         <TextView
             android:layout_width="0dp"
             android:layout_height="80dp"
@@ -169,6 +141,36 @@
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/dp_10"
             android:text="QQ交流群" />
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:id="@+id/self_jump2"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/grid_answer_question_icon"
+            android:drawablePadding="10dp"
+            android:gravity="center_horizontal"
+            android:paddingTop="@dimen/dp_10"
+            android:layout_margin="1px"
+            android:visibility="invisible"
+            android:background="@color/white"
+            android:text="预留2" /><!--visibility 隐藏-->
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:layout_margin="1px"
+            android:layout_weight="1"
+            android:id="@+id/self_jump3"
+            android:drawableTop="@drawable/grid_integral_center_icon"
+            android:background="@color/white"
+            android:drawablePadding="10dp"
+            android:gravity="center_horizontal"
+            android:visibility="invisible"
+            android:paddingTop="@dimen/dp_10"
+            android:text="预留3" />
 
         <TextView
             android:layout_width="0dp"

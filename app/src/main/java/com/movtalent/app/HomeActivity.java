@@ -61,6 +61,15 @@ public class HomeActivity extends AppCompatActivity {
     @BindView(R.id.container)
     ConstraintLayout container;
     private String[] tabText = {"热点", "专题", "分享", "我的"};
+
+
+    /**
+     * 底部导航 color颜色
+     * ic_shouye 将： #0091EA 更改为：#E91E63
+     * ic_topics 将： #2867CE 更改为：#E91E63
+     * ic_shares 将： #2867CE 更改为：#E91E63
+     * ic_selfs 将： #2867CE 更改为：#E91E63
+     */
     //未选中icon
     private int[] normalIcon = {R.drawable.ic_shouye_u, R.drawable.ic_topics_u, R.drawable.ic_shares_u, R.drawable.ic_selfs_u};
     //选中时icon
@@ -277,7 +286,7 @@ public class HomeActivity extends AppCompatActivity {
 
         manager.setApkName("金豆子影视.apk")
                 .setApkUrl(dto.getData().getDownloadUrl())
-                .setSmallIcon(R.mipmap.ticon2)
+                .setSmallIcon(R.mipmap.talenta)
                 .setShowNewerToast(true)
                 .setConfiguration(configuration)
 //                .setDownloadPath(Environment.getExternalStorageDirectory() + "/AppUpdate")

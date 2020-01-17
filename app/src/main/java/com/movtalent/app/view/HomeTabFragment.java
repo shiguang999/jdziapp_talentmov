@@ -74,7 +74,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
 
         statusLayoutManager = new StatusLayoutManager.Builder(homeRv)
                 .setDefaultLayoutsBackgroundColor(Color.WHITE)
-                .setDefaultEmptyClickViewTextColor(getResources().getColor(R.color.colorPrimary))
+                .setDefaultEmptyClickViewTextColor(getResources().getColor(R.color.colorPrimary)) // 修改顶部导航颜色
                 .setLoadingLayout(R.layout.loading_layout)
                 .setEmptyLayout(R.layout.empty_layout)
                 .setDefaultEmptyText("当前分类可能没有内容")
@@ -108,7 +108,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
         homeRv.setLayoutManager(layoutManager);
 
         //注册各个区域的view
-        adapter.register(BannerEntity.class, new BannerEntityViewBinder());
+        adapter.register(BannerEntity.class, new BannerEntityViewBinder()); //首页顶部导航
         adapter.register(Category.class, new CategoryViewBinder());
         adapter.register(VideoListDto.DataBean.class, new ItemVideosViewBinder());
         adapter.register(FooterView.class, new FooterViewViewBinder());

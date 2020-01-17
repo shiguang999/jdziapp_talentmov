@@ -142,7 +142,7 @@ public class App_Config {
             "海外"
     };
 
-    public static final String JUMP_URL_3 = "http://www.baidu.com";
-    public static final String JUMP_URL_2 = "http://www.baidu.com";
-    public static final String JUMP_URL_1 = "http://www.baidu.com";
+    public static final String JUMP_URL_3 = "http://ys.jdzi.vip";
+    public static final String JUMP_URL_2 = "http://ys.jdzi.vip";
+    public static final String JUMP_URL_1 = "http://ys.jdzi.vip";
 }
