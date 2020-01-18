@@ -192,7 +192,7 @@ public class SearchActivity extends AppCompatActivity implements ISearch {
 
     @Override
     public void loadError() {
-        Toast.makeText(this, "未找到相关内容", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "搜索失败，请稍后重试", Toast.LENGTH_SHORT).show();
     }
 
     @Override

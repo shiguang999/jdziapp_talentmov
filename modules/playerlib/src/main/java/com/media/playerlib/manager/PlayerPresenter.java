@@ -521,7 +521,7 @@ public class PlayerPresenter {
     }
 
     /**
-     * 获取屏幕方向感应，自动旋转屏幕,仅供演示，极光影院为直接横屏，故不使用
+     * 获取屏幕方向感应，自动旋转屏幕,仅供演示，金豆子影院为直接横屏，故不使用
      */
     private OrientationSensor.OnOrientationListener onOrientationListener =
             new OrientationSensor.OnOrientationListener() {

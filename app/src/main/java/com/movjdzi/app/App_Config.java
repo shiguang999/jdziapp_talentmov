@@ -23,7 +23,8 @@ public class App_Config {
     /**
      * 友盟统计key
      */
-    public static final String UMENKEY = "5d904dcb3fc195c774000b0e";
+//    public static final String UMENKEY = "5d904dcb3fc195c774000b0e";//追剧达人
+    public static final String UMENKEY = "5e2306e4cb23d2a435000295";//印影Movie
     /**
      * 友盟统计app渠道名
      */
@@ -31,7 +32,8 @@ public class App_Config {
     /**
      * 友盟推送app key
      */
-    public static final String UMEN_PUSH_KEY = "4b3893e95500500c2c2f88069e56da0c";
+//    public static final String UMEN_PUSH_KEY = "4b3893e95500500c2c2f88069e56da0c";
+    public static final String UMEN_PUSH_KEY = "1aea0bd74a1510657a6061344a70a4b4";
 
 
     /**

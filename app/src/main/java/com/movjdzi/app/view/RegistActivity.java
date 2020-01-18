@@ -75,7 +75,7 @@ public class RegistActivity extends AppCompatActivity implements IUserView {
                     return;
                 }
                 if (name.getText().toString().length() < 6) {
-                    ToastUtil.showMessage("密码长度不得少于");
+                    ToastUtil.showMessage("用户名长度不得少于 6 位");
                     return;
                 }
                 if (TextUtils.isEmpty(pass.getText().toString())) {

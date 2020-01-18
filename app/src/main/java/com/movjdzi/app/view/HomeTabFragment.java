@@ -135,7 +135,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
         AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
         if (videoVos.getData() != null && dataBean != null) {
             if (videoVos.getData().getLe1() != null && videoVos.getData().getLe1().size() > 0) {
-                items.add(new Category("品质好剧，必看榜单", v -> {
+                items.add(new Category("品质影视，必看榜单", v -> {
                     AllLevelActivity.startTo(getContext(), 1);
                 }));
                 items.addAll(videoVos.getData().getLe1());

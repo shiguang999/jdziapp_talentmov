@@ -93,7 +93,7 @@ public class CategoryActivity extends AppCompatActivity {
         requestYear = 0;
 
         // 形式
-        String[] mainTab =  App_Config.AREA_CONFIG;
+        String[] mainTab =  App_Config.MAIN_CONFIG;
 
         //地区都一样
         String[] areaTabMov = App_Config.AREA_CONFIG;
@@ -103,19 +103,26 @@ public class CategoryActivity extends AppCompatActivity {
         /**
          * 类型是根据主tab动态改变的
          */
-        ArrayList<VideoTypeVo.ClassBean> movie = UrlConfig.movie;
-        VideoTypeVo.ClassBean bean = new VideoTypeVo.ClassBean();
-        bean.setType_id(0);
-        bean.setType_name("全部类别");
-        movie.add(0, bean);
+        ArrayList<VideoTypeVo.ClassBean> movie = UrlConfig.movie;//电影
+        /*if(null != movie && !"全部类别".equals(movie.get(0).getType_name())){
+            VideoTypeVo.ClassBean bean = new VideoTypeVo.ClassBean();
+            bean.setType_id(0);
+            bean.setType_name("全部类别");
+            movie.add(0, bean);
+        }*/
 
-        ArrayList<VideoTypeVo.ClassBean> seri = UrlConfig.seri;
-        VideoTypeVo.ClassBean seriBean = new VideoTypeVo.ClassBean();
-        seriBean.setType_id(0);
-        seriBean.setType_name("全部类别");
-        seri.add(0, seriBean);
+
+        ArrayList<VideoTypeVo.ClassBean> seri = UrlConfig.seri;//电视剧
+        /*if(null != seri && !"全部类别".equals(seri.get(0).getType_name())){
+            VideoTypeVo.ClassBean seriBean = new VideoTypeVo.ClassBean();
+            seriBean.setType_id(0);
+            seriBean.setType_name("全部类别");
+            seri.add(0, seriBean);
+        }*/
+
 
         movTabAdapter = new CateTabAdapter2(movie, (position, content) -> {
+            System.out.println(position);
             requestTypeId = position == 0 ? 0 : content.getType_id();
             typeContent = content.getType_name();
             refreshData();

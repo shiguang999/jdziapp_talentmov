@@ -11,7 +11,7 @@ import com.movjdzi.app.presenter.iview.ISearch;
  * @author huangyong
  * createTime 2019-09-15
  */
-public class SearchPresenter {
+public class SearchPresenter  {
 
     private ISearch iSearch;
 

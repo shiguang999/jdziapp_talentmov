@@ -77,8 +77,16 @@ public class HomeMainFragment extends Fragment {
             return;
         }
 
-        ArrayList<VideoTypeVo.ClassBean> movie = new ArrayList<>();
-        ArrayList<VideoTypeVo.ClassBean> seris = new ArrayList<>();
+        ArrayList<VideoTypeVo.ClassBean> movie = new ArrayList<>(); // 电影分类
+        VideoTypeVo.ClassBean bean = new VideoTypeVo.ClassBean();
+        bean.setType_id(6);
+        bean.setType_name("全部类别");
+        movie.add(bean);
+        ArrayList<VideoTypeVo.ClassBean> seris = new ArrayList<>(); // 电视剧分类
+        VideoTypeVo.ClassBean seriBean = new VideoTypeVo.ClassBean();
+        seriBean.setType_id(13);
+        seriBean.setType_name("全部类别");
+        seris.add(0, seriBean);
         ArrayList<VideoTypeVo.ClassBean> currtoon = new ArrayList<>();
         ArrayList<VideoTypeVo.ClassBean> show = new ArrayList<>();
 
