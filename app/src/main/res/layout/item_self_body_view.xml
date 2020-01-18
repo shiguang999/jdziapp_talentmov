@@ -87,7 +87,7 @@
             android:layout_margin="1px"
             android:id="@+id/self_jump1"
             android:layout_weight="1"
-            android:drawableTop="@drawable/grid_draft_manage_icon"
+            android:drawableTop="@drawable/grid_gw"
             android:drawablePadding="10dp"
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/dp_10"
@@ -154,9 +154,8 @@
             android:gravity="center_horizontal"
             android:paddingTop="@dimen/dp_10"
             android:layout_margin="1px"
-            android:visibility="invisible"
             android:background="@color/white"
-            android:text="预留2" /><!--visibility 隐藏-->
+            android:text="成长历程" /><!--visibility 隐藏-->
 
         <TextView
             android:layout_width="0dp"

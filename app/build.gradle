@@ -6,11 +6,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.movtalent.app"
+        applicationId "com.movjdzi.app"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 100
-        versionName "1.0.0"
+        versionCode 112
+        versionName "1.1.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
         packagingOptions {
