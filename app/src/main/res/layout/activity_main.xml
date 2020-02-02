@@ -22,6 +22,7 @@
         android:background="@drawable/cut_down_shap"
         android:paddingLeft="4dp"
         android:layout_marginRight="30dp"
+        android:text="跳过"
         android:paddingRight="4dp"
         android:paddingTop="2dp"
         android:paddingBottom="2dp"

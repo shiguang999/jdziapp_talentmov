@@ -14,7 +14,7 @@ import jaygoo.library.m3u8downloader.server.M3U8HttpServer;
 public class M3U8Library {
 
     public static final String EVENT_REFRESH = "acton_refresh";
-    public static String dirPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "M3u8Cache";
+    public static String dirPath = Environment.getExternalStorageDirectory().getPath() + File.separator + "JdziVideo";
 
     public static Context getContext() {
         return context;

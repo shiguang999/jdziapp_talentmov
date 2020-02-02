@@ -81,6 +81,7 @@ public class SelfBodyViewViewBinder extends ItemViewBinder<SelfBodyView, SelfBod
         holder.selfJump1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                App_Config.JUMP_URL_TEXT = holder.selfJump1.getText()+"";
                 WebDetailActivity.start(v.getContext(), App_Config.JUMP_URL_1);
             }
         });
@@ -88,6 +89,7 @@ public class SelfBodyViewViewBinder extends ItemViewBinder<SelfBodyView, SelfBod
         holder.selfJump2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                App_Config.JUMP_URL_TEXT = holder.selfJump2.getText()+"";
                 WebDetailActivity.start(v.getContext(), App_Config.JUMP_URL_2);
             }
         });
@@ -95,6 +97,7 @@ public class SelfBodyViewViewBinder extends ItemViewBinder<SelfBodyView, SelfBod
         holder.selfJump3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                App_Config.JUMP_URL_TEXT = holder.selfJump3.getText()+"";
                 WebDetailActivity.start(v.getContext(), App_Config.JUMP_URL_3);
             }
         });

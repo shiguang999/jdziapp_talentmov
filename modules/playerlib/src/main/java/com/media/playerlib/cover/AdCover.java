@@ -95,8 +95,18 @@ public class AdCover extends BaseCover implements OnTimerUpdateListener {
     private void showTimeCaculate() {
         RxCountDown.countdown(5)
                 .doOnSubscribe(disposable -> {
+                    timeCut.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //跳过播放广告
+                            disposable.dispose();
+                            setCoverVisibility(GONE);
+                            notifyReceiverEvent(DataInter.Event.EVENT_CODE_REQUEST_START, null);
+                            requestResume(null);
+                        }
+                    });
                 })
-                .subscribe(integer -> timeCut.setText(integer + "秒"), throwable -> {
+                .subscribe(integer -> timeCut.setText("跳过 " + integer + "秒"), throwable -> {
 
                 }, () -> {
                     setCoverVisibility(GONE);

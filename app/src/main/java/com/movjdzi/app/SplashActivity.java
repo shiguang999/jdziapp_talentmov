@@ -72,26 +72,24 @@ public class SplashActivity extends AppCompatActivity implements ITypeView {
 
         RxCountDown.countdown(recLen)
                 .doOnSubscribe(disposable -> {
+                    timeCut.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //从闪屏界面跳转到首界面
+                            disposable.dispose();
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
                 })
                 .subscribe(integer -> {
                     timeCut.setText("跳过 " + integer + "秒");
-//                    break;
                 }, throwable -> {
 
                 }, () -> {
                     startActivity(intent);
                     finish();
                 });
-
-        /*timeCut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //从闪屏界面跳转到首界面
-                startActivity(intent);
-                finish();
-                Schedulers.shutdown();
-            }
-        });*/
 
     }
 

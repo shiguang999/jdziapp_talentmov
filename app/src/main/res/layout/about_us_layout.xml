@@ -16,6 +16,8 @@
         <TextView
             android:layout_width="match_parent"
             android:text="@string/mzsm"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
             android:layout_height="wrap_content"/>
     </android.support.v4.widget.NestedScrollView>
 

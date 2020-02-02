@@ -97,7 +97,7 @@ public class SearchPrepareFragment extends Fragment implements ISearch {
 
     private void initHistory() {
         ArrayList<SearchHistoryInfo> history = DbHelper.getAllHistory();
-        //推荐搜索词
+        //最近搜索词
         ArrayList<String> words = new ArrayList<>();
         for (SearchHistoryInfo dataBean : history) {
             words.add(dataBean.searchKeyWords);

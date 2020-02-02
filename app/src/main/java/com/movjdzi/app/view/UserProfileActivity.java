@@ -77,7 +77,11 @@ public class UserProfileActivity extends AppCompatActivity {
         items = new ArrayList<>();
 
         for (int i = 0; i < 8; i++) {
-            items.add(new IconSection(i, clickListener));
+            IconSection iconSection = new IconSection(i, clickListener);
+            /*if (i==5){
+                iconSection.setChosed(true);
+            }*/
+            items.add(iconSection);
         }
         multiTypeAdapter.setItems(items);
 

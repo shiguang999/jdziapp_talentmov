@@ -48,6 +48,7 @@ public class HomeLevelDto {
         private List<VideoListDto.DataBean> le3;
         private List<VideoListDto.DataBean> le4;
         private List<VideoListDto.DataBean> le5;
+        private List<VideoListDto.DataBean> le6;
 
         public List<VideoListDto.DataBean> getLe1() {
             return le1;
@@ -87,6 +88,14 @@ public class HomeLevelDto {
 
         public void setLe5(List<VideoListDto.DataBean> le5) {
             this.le5 = le5;
+        }
+
+        public List<VideoListDto.DataBean> getLe6() {
+            return le6;
+        }
+
+        public void setLe6(List<VideoListDto.DataBean> le6) {
+            this.le6 = le6;
         }
     }
 }

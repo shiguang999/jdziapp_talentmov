@@ -95,7 +95,7 @@ public class ShareTabFragment extends Fragment {
             showShareView(mShareContent);
         });
         VipShareItemSectionn sectionn2 = new VipShareItemSectionn("分享下载链接", R.drawable.share_link_drawable, "每日分享下载链接","+10金币", position -> {
-            ShareContent mShareContent = new ShareContentText("http://ys.jdzi.vip");
+            ShareContent mShareContent = new ShareContentText("http://ys.jdzi.vip/app/download/jdzi.apk");
             showShareView(mShareContent);
         });
         VipShareItemSectionn sectionn3 = new VipShareItemSectionn("分享影片到微信", R.drawable.share_weichat_drawable, "每日分享影片到微信或朋友圈","+10金币", position -> {

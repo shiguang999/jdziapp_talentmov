@@ -154,4 +154,5 @@ public class App_Config {
     public static final String JUMP_URL_3 = BASE_URL;
     public static final String JUMP_URL_2 = BASE_URL + "app/fzlc/index.html";//成长历程
     public static final String JUMP_URL_1 = BASE_URL;//官网
+    public static String JUMP_URL_TEXT = "详情";//详情
 }

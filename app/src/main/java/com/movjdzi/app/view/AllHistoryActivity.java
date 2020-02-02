@@ -71,7 +71,7 @@ public class AllHistoryActivity extends AppCompatActivity {
         });
 
         ImageView manage = new ImageView(this);
-        manage.setImageResource(R.drawable.ic_manage);
+        manage.setImageResource(R.drawable.ic_delete_black_24dp); // ic_manage  设置图标
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(PUtil.dip2px(this, 24), PUtil.dip2px(this, 24));
         params.gravity = Gravity.CENTER;
         manage.setLayoutParams(params);

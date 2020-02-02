@@ -248,7 +248,7 @@ public class SettingActivity extends AppCompatActivity {
 //                .setDownloadPath(Environment.getExternalStorageDirectory() + "/AppUpdate")
                 .setApkVersionCode(dto.getData().getVersionCode())
                 .setApkVersionName(dto.getData().getVersion())
-                .setApkSize("20.4")
+                .setApkSize("17.4")
                 .setAuthorities(getPackageName())
                 .setApkDescription(dto.getData().getUpdateMsg())
                 .download();

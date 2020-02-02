@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.just.agentweb.AgentWeb;
 import com.lib.common.util.DataInter;
+import com.movjdzi.app.App_Config;
 import com.movjdzi.app.R;
 
 import butterknife.BindView;
@@ -50,7 +51,7 @@ public class WebDetailActivity extends AppCompatActivity {
         setContentView(R.layout.web_layout);
         ButterKnife.bind(this);
         String adUrl = getIntent().getStringExtra(DataInter.KEY.WEB_URL);
-        centerTv.setText("详情");
+        centerTv.setText(App_Config.JUMP_URL_TEXT);
         agentWeb = AgentWeb.with(this)
                 .setAgentWebParent(webRoot, webRoot.getLayoutParams())
                 .useDefaultIndicator()

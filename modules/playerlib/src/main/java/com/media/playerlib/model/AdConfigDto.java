@@ -57,6 +57,7 @@ public class AdConfigDto {
         private AdHome2Bean ad_home_2;
         private AdHome3Bean ad_home_3;
         private AdHome4Bean ad_home_4;
+        private AdHome4Bean ad_home_5;
         private AdDetailBean ad_detail;
         private AdPlayerBean ad_player;
         private AdUserCenterBean ad_user_center;
@@ -103,6 +104,14 @@ public class AdConfigDto {
 
         public AdDetailBean getAd_detail() {
             return ad_detail;
+        }
+
+        public AdHome4Bean getAd_home_5() {
+            return ad_home_5;
+        }
+
+        public void setAd_home_5(AdHome4Bean ad_home_5) {
+            this.ad_home_5 = ad_home_5;
         }
 
         public void setAd_detail(AdDetailBean ad_detail) {
