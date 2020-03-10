@@ -9,7 +9,7 @@ android {
         applicationId "com.movjdzi.app"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 118
+        versionCode 119
         versionName "1.1.8"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
