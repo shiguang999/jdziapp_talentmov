@@ -30,6 +30,8 @@
 第59行  游客观看时间文字  <br>
 \talentmov\modules\playerlib\src\main\java\com\media\playerlib\cover\AuthCover.java<br>
 第103行  60*1000  就是60秒   时间自己改<br>
++ //修改顶部导航颜色<br>
+~app\src\main\res\values\colors.xml<br>
 
 推荐位：<br>
 品质好剧，必看榜单  推荐1 修改为：WEB端热播推荐 推荐1<br>
