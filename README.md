@@ -48,6 +48,7 @@
 + ad_user_center   个人中心广告<br>
 
 ## 3、相关配置
+> 在 com.movjdzi.app.view 下JAVA类
 + HomeTabFragment 首页<br>
 + SelfTabFragment 个人中心<br>
 + OnlineDetailPageActivity 播放页<br>
