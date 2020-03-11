@@ -1,5 +1,6 @@
 # jdziapp_talentmov APP说明书
   用到的开发工具android studio<br>
+  后端配合cms使用 https://github.com/shiguang999/jdziapp_cms.git
 
   先说对接文件改哪里<br>
   以下改的是后台的源码，也就是主机文件根目录<br>
