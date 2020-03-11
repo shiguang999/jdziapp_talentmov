@@ -1,20 +1,28 @@
 # jdziapp_talentmov APP说明书
   用到的开发工具android studio<br>
-  后端配合cms使用 https://github.com/shiguang999/jdziapp_cms.git
-
+  
+  后端配合jdziapp_cms使用 https://github.com/shiguang999/jdziapp_cms.git<br>
+  把app文件上传到苹果cms跟目录<br>
+  
   先说对接文件改哪里<br>
   以下改的是后台的源码，也就是主机文件根目录<br>
-# cms：<br>
+# cms：
 ## 1、数据库账号密码：
 + \app\app\cms\config\dbs.php  17行开始 填你的苹果cms数据库账号密码<br>
 
-## 2、注册金币、分享获得金币 ： <br>
+## 2、注册金币、分享获得金币 ：
 + /app/cms/src/app/Model/Model_User.php     第72行 $pass, 'user_points' => 改成你想要的注册金币数,<br>
 + /app/cms/src/app/Model/Model_User.php     第105行(int)$points + 改成你想要的分享金币数<br>
 + /app/cms/src/app/Api/Mov.php   版本更新 公告 广告位   470行开始<br>
+广告位：<br>
+ad_splash     开屏广告<br>
+ad_home_1到ad_home_4   推荐页广告<br>
+ad_detail   播放页广告<br>
+ad_player   播放器广告<br>
+ad_user_center   个人中心广告<br>
 
 # APP 修改:
-## 1、前端源码要改的地方
+## 1、前端源码要改的地方：
 + 搜索：金豆子影视  替换成自己的app名
 + 搜索http://111.67.193.41:6061/  替换成自己的域名（后面必须带/）
 + 其他修改项自己搜索着找就好了
@@ -33,24 +41,24 @@
 + 修改顶部导航颜色：<br>
 ~app\src\main\res\values\colors.xml<br>
 
-推荐位：<br>
-品质好剧，必看榜单  推荐1 修改为：WEB端热播推荐 推荐1<br>
-正在上映  推荐7<br>
-火热更新，好剧不断  推荐2<br>
-最新电影  推荐3<br>
-最新电视剧  推荐4<br>
-最新动漫  推荐5<br>
-最新综艺  推荐6  （名字源码我改了幻灯片推荐   名字你们自己搜索改）<br>
-幻灯片  推荐9<br>
+## 2、推荐位设置：
++ 品质好剧，必看榜单  推荐1 修改为：WEB端热播推荐 推荐1<br>
++ 正在上映  推荐7<br>
++ 火热更新，好剧不断  推荐2<br>
++ 最新电影  推荐3<br>
++ 最新电视剧  推荐4<br>
++ 最新动漫  推荐5<br>
++ 最新综艺  推荐6  （名字源码我改了幻灯片推荐   名字你们自己搜索改）<br>
++ 幻灯片  推荐9<br>
 
-## 2、广告位：<br>
+## 3、广告位设置：
 + ad_splash     开屏广告<br>
 + ad_home_1到ad_home_4   推荐页广告<br>
 + ad_detail   播放页广告<br>
 + ad_player   播放器广告<br>
 + ad_user_center   个人中心广告<br>
 
-## 3、相关配置
+## 4、相关配置：
 > 在 com.movjdzi.app.view 下JAVA类
 + HomeTabFragment 首页<br>
 + SelfTabFragment 个人中心<br>
@@ -59,6 +67,6 @@
 + ShareTabFragment 分享<br>
 + TopicTabFragment 专题推荐<br>
 
-## 4、编译：
+## 5、编译：
 + 右边点击 gradle --> app --> Tasks --> build --> assembleRelease
 + \talentmov\app\build\outputs\apk\  编译了在这个文件夹里
