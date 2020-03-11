@@ -30,7 +30,7 @@
 第59行  游客观看时间文字  <br>
 \talentmov\modules\playerlib\src\main\java\com\media\playerlib\cover\AuthCover.java<br>
 第103行  60*1000  就是60秒   时间自己改<br>
-+ //修改顶部导航颜色<br>
++ 修改顶部导航颜色：<br>
 ~app\src\main\res\values\colors.xml<br>
 
 推荐位：<br>
