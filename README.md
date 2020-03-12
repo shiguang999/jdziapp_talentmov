@@ -1,7 +1,7 @@
 # jdziapp_talentmov APP说明书
   用到的开发工具android studio<br>
   
-  后端配合jdziapp_cms使用 https://github.com/shiguang999/jdziapp_cms.git<br>
+  后端配合jdziapp_cms使用 https://github.com/shiguang999/jdziapp_appcms.git<br>
 
 # APP 修改:
 ## 1、前端源码要改的地方：
