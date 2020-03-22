@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#E91E63</color>
-    <color name="colorPrimaryDark">#E91E63</color>
-    <color name="colorAccent">#E91E63</color><!-- 蓝色：#5685FF-->
+    <color name="colorPrimary">#5685FF</color>
+    <color name="colorPrimaryDark">#5685FF</color>
+    <color name="colorAccent">#5685FF</color><!-- 蓝色：#5685FF 粉色：#E91E63-->
     <color name="shimmer_light_transparent">#16000000</color>
     <color name="title_dark_color">#2B2B2B</color>
     <color name="title_deepdark_color">#1F1F1F</color>

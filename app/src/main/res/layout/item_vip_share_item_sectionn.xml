@@ -33,7 +33,7 @@
             android:layout_width="wrap_content"
             android:textSize="12sp"
             android:textColor="#ECA604"
-            android:text="+10金币"
+            android:text="+50金币"
             android:id="@+id/coin_desc"
             android:drawableLeft="@drawable/ic_share_coin"
             android:drawablePadding="@dimen/dp_4"

@@ -32,7 +32,7 @@ public class UpdatePresenter {
                                 iUpdate.loadDone(data);
                             }
                         } else {
-                            ToastUtil.showMessage("当前已是最新版本");
+                            ToastUtil.showMessage("当前已是最新版本 " + ApkUtil.getVersionName(App.getContext()));
                         }
 
 

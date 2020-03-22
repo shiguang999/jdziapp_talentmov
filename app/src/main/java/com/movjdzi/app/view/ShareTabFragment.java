@@ -89,21 +89,21 @@ public class ShareTabFragment extends Fragment {
 
         vipHeaderSection = new VipHeaderSection(listener, "23");
 
-        VipShareItemSectionn sectionn = new VipShareItemSectionn("分享下载二维码", R.drawable.share_code_drawable, "每日分享下载二维码","+10金币", position -> {
+        VipShareItemSectionn sectionn = new VipShareItemSectionn("分享下载二维码", R.drawable.share_code_drawable, "每日分享下载二维码","+50金币", position -> {
             final Bitmap thumbBmp = ((BitmapDrawable) getResources().getDrawable(R.drawable.share)).getBitmap();
             ShareContent mShareContent = new ShareContentPic(thumbBmp);
             showShareView(mShareContent);
         });
-        VipShareItemSectionn sectionn2 = new VipShareItemSectionn("分享下载链接", R.drawable.share_link_drawable, "每日分享下载链接","+10金币", position -> {
+        VipShareItemSectionn sectionn2 = new VipShareItemSectionn("分享下载链接", R.drawable.share_link_drawable, "每日分享下载链接","+50金币", position -> {
             ShareContent mShareContent = new ShareContentText("http://ys.jdzi.vip/app/download/jdzi.apk");
             showShareView(mShareContent);
         });
-        VipShareItemSectionn sectionn3 = new VipShareItemSectionn("分享影片到微信", R.drawable.share_weichat_drawable, "每日分享影片到微信或朋友圈","+10金币", position -> {
+        VipShareItemSectionn sectionn3 = new VipShareItemSectionn("分享影片到微信", R.drawable.share_weichat_drawable, "每日分享影片到微信或朋友圈","+50金币", position -> {
             if (switchListener != null) {
                 switchListener.switchToHome();
             }
         });
-        VipShareItemSectionn sectionn4 = new VipShareItemSectionn("分享影片到qq", R.drawable.share_qq_drawable, "每日分享影片到qq或qq空间","+10金币", new VipShareItemSectionnViewBinder.VipShareClickListener() {
+        VipShareItemSectionn sectionn4 = new VipShareItemSectionn("分享影片到qq", R.drawable.share_qq_drawable, "每日分享影片到qq或qq空间","+50金币", new VipShareItemSectionnViewBinder.VipShareClickListener() {
             @Override
             public void clickShare(int position) {
                 if (switchListener != null) {
@@ -111,7 +111,7 @@ public class ShareTabFragment extends Fragment {
                 }
             }
         });
-        VipShareItemSectionn sectionn5 = new VipShareItemSectionn("分享影片到微博", R.drawable.share_weibo_drawable, "每日分享影片到新浪微博","+10金币", new VipShareItemSectionnViewBinder.VipShareClickListener() {
+        VipShareItemSectionn sectionn5 = new VipShareItemSectionn("分享影片到微博", R.drawable.share_weibo_drawable, "每日分享影片到新浪微博","+50金币", new VipShareItemSectionnViewBinder.VipShareClickListener() {
             @Override
             public void clickShare(int position) {
                 if (switchListener != null) {
@@ -120,11 +120,11 @@ public class ShareTabFragment extends Fragment {
             }
         });
         items.add(vipHeaderSection);
-        items.add(sectionn);
-        items.add(sectionn2);
-        /*items.add(sectionn3);
-        items.add(sectionn4);
-        items.add(sectionn5);*/
+        items.add(sectionn);    //二维码
+        items.add(sectionn2);   //链接
+        /*items.add(sectionn3);   //微信
+        items.add(sectionn4);   //qq
+        items.add(sectionn5); //微博*/
         multiTypeAdapter.setItems(items);
         homeRv.setAdapter(multiTypeAdapter);
 

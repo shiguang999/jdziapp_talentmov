@@ -33,6 +33,7 @@ public class VipShareItemSectionnViewBinder extends ItemViewBinder<VipShareItemS
         }
         holder.shareDesc.setText(vipShareItemSectionn.getVipShareContent());
         holder.shareTitle.setText(vipShareItemSectionn.getVipShareTitle());
+        holder.coinDesc.setText(vipShareItemSectionn.getVipShareCoinDesc());
         Glide.with(holder.itemView.getContext()).load(vipShareItemSectionn.getVipShareIcon()).into(holder.vipIcon);
     }
 

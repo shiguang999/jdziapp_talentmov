@@ -12,7 +12,8 @@ public class App_Config {
     /**
      * 服务器所有请求依赖的主域名，为cms接口系统安装的地址
      */
-    public static final String BASE_URL = "http://111.67.193.41:6061/";
+    public static final String BASE_URL = "http://111.67.193.41:6061/";//金豆子视频
+//    public static final String BASE_URL = "http://160.19.51.137/";//海鸥影视
 
     /**
      * 主分类配置，不建议修改
@@ -24,7 +25,7 @@ public class App_Config {
      * 友盟统计key
      */
 //    public static final String UMENKEY = "5d904dcb3fc195c774000b0e";//追剧达人
-    public static final String UMENKEY = "5e2306e4cb23d2a435000295";//印影Movie
+    public static final String UMENKEY = "5e2306e4cb23d2a435000295";//金豆子视频
     /**
      * 友盟统计app渠道名
      */
@@ -40,8 +41,8 @@ public class App_Config {
      * qq分享 appId
      */
 //    public static final String QQ_APP_ID = "1109823571";//追剧达人
-//    public static final String QQ_APP_ID = "1105923666";//印影Movie
-    public static final String QQ_APP_ID = "1105923666";//印影Movie
+//    public static final String QQ_APP_ID = "1105923666";//金豆子视频
+    public static final String QQ_APP_ID = "1105923666";//金豆子视频
     public static final String QQ_APP_SCOP = "get_user_info,"
             + "get_simple_userinfo,"
             + "add_share,"
@@ -53,15 +54,15 @@ public class App_Config {
      */
     /*public static final String WEICHAT_APP_ID = "wxd2069b96357bdfe7";//追剧达人
     public static final String WEICHAT_APP_SECRET = "89bc6b30bb7c750798296a7897bf8235";*/
-    /*public static final String WEICHAT_APP_ID = "wx0ba98111e3acf48c";//印影Movie
+    /*public static final String WEICHAT_APP_ID = "wx0ba98111e3acf48c";//金豆子视频
     public static final String WEICHAT_APP_SECRET = "9d04e4e393c668c1ce8542c075b1721b";*/
-    public static final String WEICHAT_APP_ID = "wx0ba98111e3acf48c";//印影Movie
+    public static final String WEICHAT_APP_ID = "wx0ba98111e3acf48c";//金豆子视频
     public static final String WEICHAT_APP_SECRET = "9d04e4e393c668c1ce8542c075b1721b";
 
     /**
      * 微博分享 配置
      */
-    public static final String WEIBO_APP_KEY = "3881135066";//金豆子影视
+    public static final String WEIBO_APP_KEY = "3881135066";//金豆子视频
     public static final String WEIBO_APP_SCOP = "friendships_groups_read,"
             + "friendships_groups_write,"
             + "statuses_to_me_read,"

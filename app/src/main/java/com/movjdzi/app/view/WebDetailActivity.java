@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebViewClient;
@@ -15,11 +16,18 @@ import android.widget.TextView;
 
 import com.just.agentweb.AgentWeb;
 import com.lib.common.util.DataInter;
+import com.lib.common.util.PUtil;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.movjdzi.app.App_Config;
 import com.movjdzi.app.R;
+import com.movjdzi.app.db.DbHelper;
+import com.movjdzi.app.view.dialog.BottomShareView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import kale.sharelogin.content.ShareContent;
+import kale.sharelogin.content.ShareContentText;
 
 /**
  * @author huangyong
@@ -65,6 +73,7 @@ public class WebDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
     @Override
