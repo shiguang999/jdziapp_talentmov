@@ -69,7 +69,7 @@ public class SelfBodyViewViewBinder extends ItemViewBinder<SelfBodyView, SelfBod
               }
           }).show();
         });
-        holder.selfQQ.setOnClickListener(v -> new XPopup.Builder(v.getContext()).asConfirm("提示", "欢迎加入qq群： 无", () -> {
+        holder.selfQQ.setOnClickListener(v -> new XPopup.Builder(v.getContext()).asConfirm("提示", "欢迎加入qq群：" + App_Config.QQ_QUN, () -> {
         }).show());
         holder.selfShare.setOnClickListener(v -> {
             final Bitmap thumbBmp = ((BitmapDrawable) v.getContext().getResources().getDrawable(R.drawable.share)).getBitmap();

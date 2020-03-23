@@ -12,7 +12,8 @@ public class App_Config {
     /**
      * 服务器所有请求依赖的主域名，为cms接口系统安装的地址
      */
-    public static final String BASE_URL = "http://111.67.193.41:6061/";//金豆子视频
+//    public static final String BASE_URL = "http://111.67.193.41:6061/";//金豆子视频
+    public static final String BASE_URL = "http://111.67.193.41:7071/";//金豆子视频
 //    public static final String BASE_URL = "http://160.19.51.137/";//海鸥影视
 
     /**
@@ -151,6 +152,11 @@ public class App_Config {
             "其他",
             "海外"
     };
+
+    /**
+     * QQ群
+     */
+    public static final String QQ_QUN = "512193231";
 
     public static final String JUMP_URL_3 = BASE_URL;
     public static final String JUMP_URL_2 = BASE_URL + "app/fzlc/index.html";//成长历程
