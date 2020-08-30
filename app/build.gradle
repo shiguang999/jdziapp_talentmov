@@ -101,7 +101,7 @@ dependencies {
 
     //tablayout
     //对话框
-    implementation 'com.lxj:xpopup:1.5.2'
+    implementation 'com.lxj:xpopup:1.6.7'
     //加载状态
     implementation 'com.billy.android:gloading:1.0.0'
     implementation('com.squareup.retrofit2:converter-simplexml:2.1.0') {
