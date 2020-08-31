@@ -136,7 +136,39 @@ public class FullPlayerPresenter {
             }
         }
     };
+    public void switchPlayFirst(Activity smartDetailActivity, FrameLayout loadingweb, String url,int index) {
+        if (TextUtils.isEmpty(url)) {
+            Toast.makeText(smartDetailActivity, "初始化出错，请退出重试", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (playParseUrl(smartDetailActivity, loadingweb, url,index)) return;
+        if (mAssist != null) {
+            mAssist.play();
+        }
 
+    }
+
+    private boolean playParseUrl(Activity smartDetailActivity, FrameLayout loadingweb, String playUrl,int index) {
+        if (playUrl.endsWith(".html")) {
+            mAssist.pause();
+            Toast.makeText(smartDetailActivity, "正在解析，请耐心等待", Toast.LENGTH_SHORT).show();
+            ParsePlayUtils.getInstance().toParsePlay(smartDetailActivity, playUrl, loadingweb, new ParsePlayUtils.OnPlayUrlFindListener() {
+                @Override
+                public void onFindUrl(String url) {
+                    switchPlay(url, index);
+                }
+
+                @Override
+                public void onError() {
+
+                }
+            });
+            return true;
+        }else {
+            switchPlay(playUrl,index);
+        }
+        return false;
+    }
     private void saveProgress(String playUrl, int progress) {
         //进度记录
         if (!TextUtils.isEmpty(playUrl)) {

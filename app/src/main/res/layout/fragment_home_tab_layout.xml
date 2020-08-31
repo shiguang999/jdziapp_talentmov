@@ -16,6 +16,7 @@
             android:id="@+id/toobar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/home_bg"
             app:contentInsetStart="0dp"
             app:paddingStart="0dp">
 
@@ -55,7 +56,7 @@
                     android:background="@drawable/serach_bg"
                     android:gravity="center_vertical"
                     android:paddingLeft="16dp"
-                    android:text="搜索 影片、动漫、电视剧"
+                    android:text="@string/seach_key"
                     android:textColor="#C1FFFFFF"
                     android:textSize="14sp" />
 

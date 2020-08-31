@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.movjdzi.app">
+    package="com.movtalent.app">
 
     <application
-        android:name="com.movjdzi.app.App"
+        android:name="com.movtalent.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/talenta"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.movjdzi.app.view.UserProfileActivity"
+        <activity android:name="com.movtalent.app.view.UserProfileActivity"
             android:screenOrientation="portrait"
             ></activity>
 
         <activity
-            android:name="com.movjdzi.app.HomeActivity"
+            android:name="com.movtalent.app.HomeActivity"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait"
             ></activity>
 
         <activity
-            android:name="com.movjdzi.app.SplashActivity"
+            android:name="com.movtalent.app.SplashActivity"
             android:theme="@style/Theme.TransparentA"
             android:screenOrientation="portrait"
             >
@@ -30,57 +30,57 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.movjdzi.app.view.AllLevelActivity"
+        <activity android:name="com.movtalent.app.view.AllLevelActivity"
             android:screenOrientation="portrait"
             />
 
-        <activity android:name="com.movjdzi.app.view.CoinShopActivity"
+        <activity android:name="com.movtalent.app.view.CoinShopActivity"
             android:screenOrientation="portrait"
             /> <!-- 趣米的广告结束 -->
-        <activity android:name="com.movjdzi.app.view.WebDetailActivity"
+        <activity android:name="com.movtalent.app.view.WebDetailActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.ReQuestFilmActivity"
+        <activity android:name="com.movtalent.app.view.ReQuestFilmActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.ReportActivitys"
+        <activity android:name="com.movtalent.app.view.ReportActivitys"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.AllDownLoadActivity"
+        <activity android:name="com.movtalent.app.view.AllDownLoadActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.SettingActivity"
+        <activity android:name="com.movtalent.app.view.SettingActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.LoginActivity"
+        <activity android:name="com.movtalent.app.view.LoginActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.RegistActivity"
+        <activity android:name="com.movtalent.app.view.RegistActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.AllHistoryActivity"
+        <activity android:name="com.movtalent.app.view.AllHistoryActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.AllFavorActivity"
+        <activity android:name="com.movtalent.app.view.AllFavorActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.AboutUsActivity"
+        <activity android:name="com.movtalent.app.view.AboutUsActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.SearchActivity"
+        <activity android:name="com.movtalent.app.view.SearchActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.CastDescriptionnActivity"
+        <activity android:name="com.movtalent.app.view.CastDescriptionnActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.view.AllSubjectActivity"
+        <activity android:name="com.movtalent.app.view.AllSubjectActivity"
             android:screenOrientation="portrait"
             />
-        <activity android:name="com.movjdzi.app.category.CategoryActivity"
+        <activity android:name="com.movtalent.app.category.CategoryActivity"
             android:screenOrientation="portrait"
             />
         <activity
-            android:name="com.movjdzi.app.view.OnlineDetailPageActivity"
+            android:name="com.movtalent.app.view.OnlineDetailPageActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.TransparentA" />

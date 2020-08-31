@@ -13,7 +13,7 @@
     <color name="tab_2_normal_color">#6C2D2D2D</color>
     <color name="toolbar_color">#5685FF</color>
     <color name="toolbar_start_color">#12F4F8</color>
-
+    <color name="home_bg">#45adf7</color>
     <color name="confirm">#fd5e5e5e</color>
     <color name="comment_user_name">#868087</color>
     <color name="comment_content">#2c292a</color>

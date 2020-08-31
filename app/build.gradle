@@ -6,7 +6,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.movjdzi.app"
+        applicationId "com.movtalent.app"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 121
@@ -84,7 +84,7 @@ dependencies {
     //view 绑定
     api 'com.jakewharton:butterknife:8.5.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
-//权限管理
+    //权限管理
     implementation 'com.tbruyelle.rxpermissions:rxpermissions:0.9.4@aar'
     //流式标签
     implementation 'com.github.alidili:FlowLayout:v1.5'
