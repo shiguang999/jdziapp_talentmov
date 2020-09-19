@@ -48,7 +48,7 @@ public class UrlConfig {
      */
     static final String getRecmend = App_Config.SERVER_PATH+"public/?service=App.Mov.GetRecommend";
     /**
-     * 首页推荐1、2、3、4、5，需要后台手动添加
+     * 首页推荐1、2、3、4、5，需要后台手动添加 推荐6 为首页banner
      */
     static final String getHomeLevel = App_Config.SERVER_PATH+"public/?service=App.Mov.GetHomeLevel";
     /**
@@ -90,6 +90,7 @@ public class UrlConfig {
      */
     static final String getPublish = App_Config.SERVER_PATH+"public/?service=App.Mov.CheckPubish";
     static final String getADConfig = App_Config.SERVER_PATH+"public/?service=App.Mov.GetAdConfig";
+
 
     /*用户相关*/
     /**

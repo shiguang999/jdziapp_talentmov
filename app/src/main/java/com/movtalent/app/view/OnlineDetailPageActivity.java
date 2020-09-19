@@ -1,10 +1,6 @@
 package com.movtalent.app.view;
 
 import android.Manifest;
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -19,8 +15,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -28,17 +26,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import com.lib.common.util.DataInter;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
-import com.lib.common.util.DataInter;
 import com.media.playerlib.PlayApp;
+import com.media.playerlib.manager.ParsePlayUtils;
 import com.media.playerlib.manager.PlayerPresenter;
-import com.media.playerlib.model.AdConfigDto;
 import com.media.playerlib.model.VideoPlayVo;
 import com.media.playerlib.widget.GlobalDATA;
 import com.movtalent.app.R;
-import com.movtalent.app.adapter.DetailAdSection;
-import com.movtalent.app.adapter.DetailAdSectionViewBinder;
 import com.movtalent.app.adapter.DetailDescSection;
 import com.movtalent.app.adapter.DetailDescSectionViewBinder;
 import com.movtalent.app.adapter.DetailPlaySection;
@@ -99,9 +96,9 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
  * createTime 2019-09-14
  */
 public class OnlineDetailPageActivity extends AppCompatActivity implements IDetailView, IRecView, View.OnClickListener {
-
-    private int groupPlay=0;
-
+    private VideoPlayVo videoPlayVo;
+    private String PathUrl ="";
+    private int groupPlay = 0;
     @BindView(R.id.video_container)
     FrameLayout videoContainer;
     @BindView(R.id.detail_content)
@@ -116,7 +113,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
     ImageView download;
     private MultiTypeAdapter detailAdapter;
     private DetailPresenter detailPresenter;
-
+    private FrameLayout frameLayout;
     @VisibleForTesting
     List<Object> items;
     private PlayerPresenter playerPresenter;
@@ -125,27 +122,17 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
     private CommentPresenter commentPresenter;
     private int index;
     private CommonVideoVo videoVo;
-    private ArrayList<String> urls;
+    private ArrayList<String> urls = new ArrayList<>();
     private CommonVideoVo globalVideoVo;
-    BroadcastReceiver receiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(DataInter.KEY.ACTION_REFRESH_COIN)) {
-                if (playerPresenter != null) {
-                    if (UserUtil.checkAuth()) {
-                        playerPresenter.setAuthCode(PlayApp.AUTH_ALL);
-//                        playerPresenter.restart();
-                    }
-                }
-            }
-        }
-    };
+    private String TAG = "播放页";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.movie_detail_layout);
         ButterKnife.bind(this);
+        frameLayout = (FrameLayout) ViewGroup.inflate(OnlineDetailPageActivity.this, R.layout.item_detail_ad_entity, videoContainer);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         vodId = getIntent().getIntExtra(DataInter.KEY.VOD_ID, 0);
 
@@ -161,7 +148,6 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         detailContent.setAdapter(detailAdapter);
 
         detailAdapter.register(DetailDescSection.class, new DetailDescSectionViewBinder());
-        detailAdapter.register(DetailAdSection.class, new DetailAdSectionViewBinder());// 播放页广告
         detailAdapter.register(DetailPlaySection.class, new DetailPlaySectionViewBinder());
         detailAdapter.register(DetailRecmmendSection.class, new DetailRecmmendSectionViewBinder());
         detailAdapter.register(FooterView.class, new FooterViewViewBinder());
@@ -181,14 +167,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         initFavorAbout();
         initCommentAbout();
         initLisener();
-        registReceiver();
-    }
 
-    private void registReceiver() {
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(DataInter.KEY.ACTION_REFRESH_COIN);
-        intentFilter.addAction(DataInter.KEY.ACTION_EXIT_LOGIN);
-        registerReceiver(receiver, intentFilter);
     }
 
 
@@ -206,6 +185,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         }
         LoginDto.DataBean dataBean = new Gson().fromJson(userInfo, LoginDto.DataBean.class);
         favorPresenter.getHaveFavor(dataBean.getUser_id(), vodId);
+
     }
 
     private void initLisener() {
@@ -214,6 +194,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         download.setOnClickListener(this);
     }
 
+    //第一次请求数据
     @Override
     public void loadDone(CommonVideoVo commonVideoVo) {
         this.videoVo = commonVideoVo;
@@ -229,22 +210,26 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
     }
 
     /**
+     * //第一次请求数据
      * 如果是电视剧，会显示分集
      *
      * @param commonVideoVo
      */
     private void loadSeri(CommonVideoVo commonVideoVo) {
-        DetailPlaySection section = new DetailPlaySection(groupPlay,commonVideoVo, new OnSeriClickListener() {
-
+        DetailPlaySection section = new DetailPlaySection(groupPlay, commonVideoVo, new OnSeriClickListener() {
             @Override
             public void switchPlay(String url, int index, int groupIndex) {
-                playerPresenter.switchPlay(url, index);
+                Log.d(TAG, "loadSeri: " + url);
+                playerPresenter.switchPlayFirst(OnlineDetailPageActivity.this, videoContainer,url,index);
                 groupPlay = groupIndex;
+
             }
 
+            //查看全部
             @Override
             public void showAllSeri(CommonVideoVo commonVideoVo) {
                 showPlaySheetDialog(commonVideoVo.getMovPlayUrlList().get(groupPlay));
+
             }
         });
         items.add(section);
@@ -256,7 +241,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
     }
 
     private void loadDetail(CommonVideoVo commonVideoVo) {
-        AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
+
         DetailDescSection detailDescSection = new DetailDescSection(commonVideoVo, new OnDetailClickListener() {
             @Override
             public void clickReport(String vodId) {
@@ -280,8 +265,6 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         });
         items.add(detailDescSection);
         detailAdapter.notifyItemChanged(0);
-        if(dataBean.getAd_detail().getShow()) items.add(new DetailAdSection());
-        detailAdapter.notifyItemChanged(1);
     }
 
     private void loadPlay(CommonVideoVo commonVideoVo) {
@@ -296,20 +279,36 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
 
 
         globalVideoVo = commonVideoVo;
-        playerPresenter.initView(this, videoContainer, fullContainer, authCode);
-        VideoPlayVo videoPlayVo = new VideoPlayVo();
-        videoPlayVo.setPlayUrl(commonVideoVo.getMovPlayUrlList().get(groupPlay).get(0).getPlayUrl());
+        videoPlayVo = new VideoPlayVo();
+        playerPresenter.initView(OnlineDetailPageActivity.this, videoContainer, fullContainer, authCode);
         videoPlayVo.setVodId(Integer.parseInt(commonVideoVo.getMovId()));
         videoPlayVo.setTitle(commonVideoVo.getMovName());
-
-        urls = new ArrayList<>();
         for (int i = 0; i < commonVideoVo.getMovPlayUrlList().get(groupPlay).size(); i++) {
             urls.add(commonVideoVo.getMovPlayUrlList().get(groupPlay).get(i).getPlayUrl());
         }
+        videoPlayVo.setPlayUrl(commonVideoVo.getMovPlayUrlList().get(groupPlay).get(0).getPlayUrl());
         videoPlayVo.setSeriUrls(urls);
         playerPresenter.initData(videoPlayVo);
-        playerPresenter.configOrientationSensor(this);
+        playerPresenter.configOrientationSensor(OnlineDetailPageActivity.this);
         playerPresenter.setPlayListener(playListener);
+
+        if (commonVideoVo.getMovPlayUrlList().get(groupPlay).get(0).getPlayUrl().endsWith(".html")) {
+            ParsePlayUtils.getInstance().toParsePlay(OnlineDetailPageActivity.this, commonVideoVo.getMovPlayUrlList().get(groupPlay).get(0).getPlayUrl(),
+                    videoContainer, new ParsePlayUtils.OnPlayUrlFindListener() {
+                        @Override
+                        public void onFindUrl(String url) {
+                            playerPresenter.switchPlay(url,0);
+                        }
+
+                        @Override
+                        public void onError() {
+
+                        }
+                    }
+            );
+
+        }
+
         HistoryDBhelper.checkHistoryAndPlay(vodId, playSwitchListener);
     }
 
@@ -358,7 +357,6 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         if (playerPresenter != null) {
             playerPresenter.destroy();
         }
-        unregisterReceiver(receiver);
         super.onDestroy();
     }
 
@@ -394,29 +392,31 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         }
     }
 
-
+    //查看全部
     private void showPlaySheetDialog(ArrayList<VideoVo> playUrlList) {
         // Set up BottomSheetDialog
         BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         View view = LayoutInflater.from(this).inflate(R.layout.play_all_list_layout, null);
         bottomSheetDialog.setContentView(view);
-        bottomSheetDialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        bottomSheetDialog.getWindow().findViewById(R.id.design_bottom_sheet).setBackground(new ColorDrawable(Color.TRANSPARENT));
         PlayListAdapter adapter2 = new PlayListAdapter(playUrlList, new OnSeriClickListener() {
 
             @Override
             public void switchPlay(String url, int index, int groupIndex) {
                 Toast.makeText(OnlineDetailPageActivity.this, "即将播放第" + (index + 1) + "集", Toast.LENGTH_SHORT).show();
-                playerPresenter.switchPlay(url, index);
+                playerPresenter.switchPlayFirst(OnlineDetailPageActivity.this, frameLayout,url,index);
+                //  Log.d(TAG, "switchPlay: " + url);
             }
 
             @Override
             public void showAllSeri(CommonVideoVo commonVideoVo) {
             }
         }, groupPlay);
+        //adapter2.notifyDataSetChanged();
         RecyclerView allList = view.findViewById(R.id.all_list);
         TextView title = view.findViewById(R.id.title);
         String[] arrName = videoVo.getVodPlayFrom().split("[$][$][$]");
-        title.setText("所有剧集（"+arrName[groupPlay]+")");
+        title.setText("所有剧集（" + arrName[groupPlay] + ")");
         ImageView close = view.findViewById(R.id.close);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 5);
         gridLayoutManager.setOrientation(GridLayoutManager.VERTICAL);
@@ -509,6 +509,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
     };
+
     private void showDetailSheetDialog(CommonVideoVo commonVideoVo) {
         new XPopup.Builder(this).asCustom(new DetailDialogWindow(this, commonVideoVo)).show();
     }
@@ -676,9 +677,9 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
     @Override
     public void onBackPressed() {
 
-        if (playerPresenter!=null && playerPresenter.getIsLandscape()){
+        if (playerPresenter != null && playerPresenter.getIsLandscape()) {
             playerPresenter.onBackPress();
-        }else {
+        } else {
             super.onBackPressed();
         }
     }

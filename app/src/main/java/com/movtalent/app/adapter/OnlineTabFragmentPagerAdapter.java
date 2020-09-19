@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.movtalent.app.model.vo.ItemTab;
 import com.movtalent.app.model.vo.VideoTypeVo;
 import com.movtalent.app.view.list.MovListFragment;
 

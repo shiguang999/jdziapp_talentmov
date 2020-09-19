@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.movtalent.app.R;
+import com.movtalent.app.model.vo.CommonVideoVo;
 
 import me.drakeet.multitype.ItemViewBinder;
 

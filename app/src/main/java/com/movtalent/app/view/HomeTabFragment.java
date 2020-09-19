@@ -158,6 +158,7 @@ public class HomeTabFragment extends Fragment implements IHomeView {
             }
             if(dataBean.getAd_home_3().getShow()) items.add(new HomeAdEntity(2));
 
+
             if (videoVos.getData().getLe4() != null && videoVos.getData().getLe4().size() > 0) {
                 items.add(new Category("最新电视剧", v -> {
                     AllLevelActivity.startTo(getContext(), 4);

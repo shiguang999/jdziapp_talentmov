@@ -72,8 +72,6 @@ public class SelfTabFragment extends Fragment {
     private void initView() {
         AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
         backup.setVisibility(View.GONE);
-
-
         multiTypeAdapter = new MultiTypeAdapter();
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         selfRv.setLayoutManager(manager);
@@ -89,7 +87,6 @@ public class SelfTabFragment extends Fragment {
         coin = "20";
 
         headView = new SelfHeadView("", "test", coin, onloginListener);
-
         items.add(headView);
         if(dataBean.getAd_user_center().getShow()) items.add(new SelfAdSection());
         items.add(new SelfBodyView());

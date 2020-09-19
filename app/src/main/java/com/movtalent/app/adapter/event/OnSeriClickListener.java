@@ -9,6 +9,5 @@ import com.movtalent.app.model.vo.CommonVideoVo;
  */
 public interface OnSeriClickListener {
     void switchPlay(String url,int index,int groupIndex);
-
     void showAllSeri(CommonVideoVo commonVideoVo);
 }

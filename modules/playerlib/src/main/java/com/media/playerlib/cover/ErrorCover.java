@@ -17,7 +17,6 @@ import com.media.playerlib.R;
 import com.media.playerlib.manager.PlayerPresenter;
 import com.media.playerlib.model.DataInter;
 
-import org.fourthline.cling.support.model.item.TextItem;
 
 
 /**

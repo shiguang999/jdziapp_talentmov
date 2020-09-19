@@ -74,7 +74,6 @@ public class DownloadItemList extends Fragment {
                             @Override
                             public void onConfirm() {
 
-
                                 M3U8DownloaderPro.getInstance().deleteLocal(m3u8DoneItem.getM3u8DoneInfo().getTaskData(), new OnDeleteTaskListener() {
                                     @Override
                                     public void onStart() {

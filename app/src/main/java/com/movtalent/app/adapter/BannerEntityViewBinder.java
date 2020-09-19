@@ -2,10 +2,13 @@ package com.movtalent.app.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.movtalent.app.R;
 import com.movtalent.app.model.vo.CommonVideoVo;
 import com.ms.banner.Banner;
@@ -13,7 +16,10 @@ import com.ms.banner.BannerConfig;
 import com.ms.banner.Transformer;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
+import cn.bingoogolapple.bgabanner.BGABanner;
 import me.drakeet.multitype.ItemViewBinder;
 
 /**

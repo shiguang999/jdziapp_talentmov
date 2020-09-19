@@ -11,6 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.movtalent.app.R;
+import com.movtalent.app.adapter.OnlineSearchAdapter;
+import com.movtalent.app.model.vo.CommonVideoVo;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

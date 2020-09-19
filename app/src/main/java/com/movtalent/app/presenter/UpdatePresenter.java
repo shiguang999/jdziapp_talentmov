@@ -1,6 +1,10 @@
 package com.movtalent.app.presenter;
 
+import android.widget.Toast;
+
+import com.azhon.appupdate.dialog.UpdateDialog;
 import com.azhon.appupdate.utils.ApkUtil;
+import com.azhon.appupdate.utils.LogUtil;
 import com.movtalent.app.App;
 import com.movtalent.app.http.ApiService;
 import com.movtalent.app.http.BaseApi;

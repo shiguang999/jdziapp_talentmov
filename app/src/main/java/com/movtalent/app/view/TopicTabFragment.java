@@ -12,9 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.movtalent.app.R;
+import com.movtalent.app.adapter.BannerEntity;
+import com.movtalent.app.adapter.BannerEntityViewBinder;
 import com.movtalent.app.adapter.SubjectEntity;
 import com.movtalent.app.adapter.SubjectEntityViewBinder;
 import com.movtalent.app.model.dto.TopicRDto;

@@ -1,6 +1,8 @@
 package com.movtalent.app.third;
 
 
+import android.util.Log;
+
 import com.movtalent.app.util.ToastUtil;
 
 import kale.sharelogin.ShareListener;

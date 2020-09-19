@@ -22,10 +22,13 @@ import com.lib.common.util.room.HistoryDao;
 import com.media.playerlib.model.DataInter;
 import com.movtalent.app.App;
 import com.movtalent.app.R;
+import com.movtalent.app.adapter.OnlineCategoryAdapter;
 import com.movtalent.app.adapter.OnlineHistoryAdapter;
+import com.movtalent.app.adapter.OnlineSearchAdapter;
 import com.movtalent.app.db.DbHelper;
 import com.movtalent.app.model.vo.CommonVideoVo;
 import com.movtalent.app.view.list.CommonListFragment;
+import com.movtalent.app.view.list.LevelFragment;
 
 import java.util.ArrayList;
 import java.util.List;

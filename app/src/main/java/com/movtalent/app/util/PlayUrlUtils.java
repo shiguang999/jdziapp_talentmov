@@ -21,8 +21,6 @@ public class PlayUrlUtils {
             String replace = vodPlayUrl.replace("$$$", "bbb");
             String[] tmp = replace.split("bbb");
             for (int j = 0; j < tmp.length; j++) {
-
-
                 if (tmp[j].contains("m3u8")) {
                     //进一步处理,如果是包含#，应该是电视剧
                     if (tmp[j].contains("#")) {

@@ -24,6 +24,7 @@ import com.movtalent.app.model.dto.SearchWdDto;
 import com.movtalent.app.model.vo.CommonVideoVo;
 import com.movtalent.app.presenter.SearchPresenter;
 import com.movtalent.app.presenter.iview.ISearch;
+import com.movtalent.app.util.DBjk;
 import com.movtalent.app.util.ToastUtil;
 import com.movtalent.app.view.list.CommonListFragment;
 

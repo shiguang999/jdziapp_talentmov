@@ -3,12 +3,14 @@ package com.movtalent.app.adapter.detail;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.movtalent.app.R;
 import com.movtalent.app.model.vo.CommentVo;
+import com.movtalent.app.presenter.CommentPresenter;
 import com.movtalent.app.util.UserUtil;
 
 import java.util.ArrayList;

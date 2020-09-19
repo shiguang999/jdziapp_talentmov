@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.media.playerlib.model.DataInter;
 import com.movtalent.app.R;
 import com.movtalent.app.adapter.OnlineSearchAdapter;
 import com.movtalent.app.model.vo.CommonVideoVo;
@@ -55,7 +57,6 @@ public class AllFavorActivity extends AppCompatActivity implements IFavor {
 
         FavorPresenter favorPresenter = new FavorPresenter(this);
         favorPresenter.getAllFavor(UserUtil.getUserId());
-
         backup.setOnClickListener(v -> finish());
 
         centerTv.setText("我的收藏");
@@ -64,6 +65,8 @@ public class AllFavorActivity extends AppCompatActivity implements IFavor {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.mov_content, commonListFragment);
         fragmentTransaction.commitAllowingStateLoss();
+
+
     }
 
     @Override

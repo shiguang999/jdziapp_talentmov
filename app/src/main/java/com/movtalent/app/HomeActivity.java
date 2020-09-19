@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -83,22 +85,23 @@ public class HomeActivity extends AppCompatActivity {
             if (selfTabFragment != null && intent.getAction().equals(DataInter.KEY.ACTION_REFRESH_COIN)) {
                 selfTabFragment.refreshData();
             }
-            if (intent.getAction().equals(DataInter.KEY.ACTION_EXIT_LOGIN)){
-                if (selfTabFragment!=null&& shareTabFragment!=null){
+            if (intent.getAction().equals(DataInter.KEY.ACTION_EXIT_LOGIN)) {
+                if (selfTabFragment != null && shareTabFragment != null) {
                     shareTabFragment.refreshData();
                     selfTabFragment.refreshData();
                 }
             }
-            if (intent.getAction().equals(DataInter.KEY.ACTION_REFRESH_ICON)){
-                if (selfTabFragment!=null){
+            if (intent.getAction().equals(DataInter.KEY.ACTION_REFRESH_ICON)) {
+                if (selfTabFragment != null) {
                     selfTabFragment.refreshIcon();
                 }
             }
         }
     };
-    private ShareTabFragment shareTabFragment;
+    private ShareTabFragment shareTabFragment; //分享
     private SelfTabFragment selfTabFragment;
     private PublishPresenter publishPresenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,7 +115,7 @@ public class HomeActivity extends AppCompatActivity {
         selfTabFragment = new SelfTabFragment();
         fragments.add(HomeMainFragment.getInstance(typeVo));
         fragments.add(new TopicTabFragment());
-        fragments.add(shareTabFragment);
+        fragments.add(shareTabFragment);//
         fragments.add(selfTabFragment);
 
         navigationBar.titleItems(tabText)
@@ -121,7 +124,7 @@ public class HomeActivity extends AppCompatActivity {
                 .onTabClickListener(new EasyNavigationBar.OnTabClickListener() {
                     @Override
                     public boolean onTabClickEvent(View view, int position) {
-                        if (position==2){
+                        if (position == 2) {
                             shareTabFragment.refreshData();
                         }
                         return false;
@@ -174,8 +177,8 @@ public class HomeActivity extends AppCompatActivity {
         publishPresenter = new PublishPresenter(new PublishPresenter.IPost() {
             @Override
             public void loadPost(PostDto dto) {
-                if (dto!=null&&dto.getData()!=null&&dto.getData().isShow()){
-                    new XPopup.Builder(HomeActivity.this).asCustom(new PostPop(HomeActivity.this,dto)).show();
+                if (dto != null && dto.getData() != null && dto.getData().isShow()) {
+                    new XPopup.Builder(HomeActivity.this).asCustom(new PostPop(HomeActivity.this, dto)).show();
                 }
             }
         });
@@ -195,10 +198,12 @@ public class HomeActivity extends AppCompatActivity {
         unregisterReceiver(receiver);
         super.onDestroy();
     }
+
     static final String[] PERMISSIONS = new String[]{
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.READ_EXTERNAL_STORAGE,
     };
+
     private void requestAppPermissions() {
         Dexter.withActivity(this)
                 .withPermissions(PERMISSIONS)
@@ -279,7 +284,7 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 });
 
-        DownloadManager  manager = DownloadManager.getInstance(this);
+        DownloadManager manager = DownloadManager.getInstance(this);
 
         manager.setApkName("金豆子视频.apk")
                 .setApkUrl(dto.getData().getDownloadUrl())

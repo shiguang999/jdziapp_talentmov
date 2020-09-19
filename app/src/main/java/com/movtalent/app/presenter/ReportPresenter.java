@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.text.TextUtils;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.movtalent.app.App;
 import com.movtalent.app.presenter.iview.IReport;
 import com.movtalent.app.util.UserUtil;

@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -32,15 +33,13 @@ import com.lib.common.util.data.PlayRecordInfo;
 import com.lib.common.util.room.RecordDao;
 import com.lib.common.util.tool.StringUtil;
 import com.media.playerlib.PlayApp;
-import com.media.playerlib.cover.AdCover;
 import com.media.playerlib.cover.AuthCover;
 import com.media.playerlib.cover.ControllerCover;
 import com.media.playerlib.cover.ErrorCover;
 import com.media.playerlib.cover.GestureCover;
 import com.media.playerlib.cover.LoadingCover;
 import com.media.playerlib.cover.SmallControllerCover;
-import com.media.playerlib.dlan.DlanListPop;
-import com.media.playerlib.model.AdConfigDto;
+
 import com.media.playerlib.model.DataInter;
 import com.media.playerlib.model.VideoPlayVo;
 import com.media.playerlib.widget.GlobalDATA;
@@ -69,7 +68,6 @@ public class PlayerPresenter {
     private ViewGroup fullContent;
     private int progress;
 
-
     public void setAuthCode(int authCode) {
         this.authCode = authCode;
         if (mAssist != null) {
@@ -92,7 +90,7 @@ public class PlayerPresenter {
         container.post(() -> originHeight = container.getHeight());
 
         receiverGroup = new ReceiverGroup(null);
-        receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
+        // receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
         receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER, new GestureCover(context));
         receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_LOADING_COVER, new LoadingCover(context));
 
@@ -124,10 +122,8 @@ public class PlayerPresenter {
                     String playUrl = bundle.getString(DataInter.Key.KEY_CURRENTPLAY_URL);
                     int anInt = mAssist.getReceiverGroup().getGroupValue().getInt(DataInter.Key.KEY_CURRENTPLAY_INDEX);
                     if (playUrl.endsWith(".html")) {
-                        if (controlListener != null) {
-                            controlListener.onPlayParseUrl(playUrl, anInt);
-                            return;
-                        }
+                        switchPlayFirst((Activity)context,(FrameLayout) container,playUrl,anInt);
+                        return;
                     }
                     refreshStartPosition(playUrl);
                     dataSource.setData(playUrl);
@@ -187,8 +183,8 @@ public class PlayerPresenter {
      * Dlan投屏窗口
      */
     private void showDlan() {
-
-        String currentUrl = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_URL);
+        Toast.makeText(context, "投屏功能暂不可用", Toast.LENGTH_SHORT).show();
+        /*String currentUrl = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_URL);
         String currentTitle = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_TITLE);
         if (TextUtils.isEmpty(currentUrl)) {
             Toast.makeText(context, "投屏功能暂不可用", Toast.LENGTH_SHORT).show();
@@ -202,21 +198,20 @@ public class PlayerPresenter {
             new XPopup.Builder(context).
                     asCustom(dlanListPop).
                     show();
-        }
+        }*/
     }
 
 
     /**
      * 填充播放数据
      *
-     * @param videoPlayVo
+     * @param videoPlayVo 传过来的视频信息 包含url title
      */
     public void initData(VideoPlayVo videoPlayVo) {
 
         Gson gson = new Gson();
         String json = gson.toJson(videoPlayVo);
         mAssist.getReceiverGroup().getGroupValue().putString(DataInter.Key.MOVIE_INFO, json);
-
         mAssist.getReceiverGroup().getGroupValue().putString(DataInter.Key.KEY_CURRENTPLAY_URL, videoPlayVo.getPlayUrl());
         mAssist.getReceiverGroup().getGroupValue().putString(DataInter.Key.KEY_CURRENTPLAY_TITLE, videoPlayVo.getTitle());
 
@@ -323,7 +318,6 @@ public class PlayerPresenter {
                     break;
                 case OnPlayerEventListener.PLAYER_EVENT_ON_STOP:
                 case OnPlayerEventListener.PLAYER_EVENT_ON_PAUSE:
-
                     String url = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_URL);
                     if (authCode == PlayApp.AUTH_ALL) {
                         saveProgress(url, mAssist.getCurrentPosition());
@@ -341,7 +335,6 @@ public class PlayerPresenter {
 
 
     public void pause() {
-
         if (mAssist == null) {
             return;
         }
@@ -379,7 +372,6 @@ public class PlayerPresenter {
 
     public void destroy() {
         if (mAssist != null) {
-
             if (playListener != null) {
                 //保存进度
                 playListener.onExit(mAssist.getCurrentPosition(), mAssist.getDuration(), mAssist.getReceiverGroup().getGroupValue().getInt(DataInter.Key.KEY_CURRENTPLAY_INDEX));
@@ -397,8 +389,8 @@ public class PlayerPresenter {
     /**
      * 选集切换
      *
-     * @param url
-     * @param index
+     * @param url 播放链接
+     * @param index 第几集
      */
     public void switchPlay(String url, int index) {
         if (mAssist != null) {
@@ -407,25 +399,26 @@ public class PlayerPresenter {
             mAssist.reset();
             progress = 0;
             refreshStartPosition(url);
-
             DataSource dataSource = new DataSource(url);
             mAssist.setDataSource(dataSource);
             mAssist.getReceiverGroup().getGroupValue().putString(DataInter.Key.KEY_CURRENTPLAY_URL, url);
             mAssist.getReceiverGroup().getGroupValue().putInt(DataInter.Key.KEY_CURRENTPLAY_INDEX, index);
-            //mAssist.play();
+            mAssist.play();
 
-            resetAdCover();
         }
     }
-
-    private void resetAdCover() {
-        AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
-        mAssist.reset();
-        if(dataBean.getAd_player().getShow()) receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AD_COVER, new AdCover(context)); // 播放器广告
-        dispatcher.dispatchReceiverEvent(DataInter.Event.KEY_SHOW_AD, null);
-//        dispatcher.dispatchReceiverEvent(DataInter.Event.RESTART_PLAY, null);
+    public void switchPlayFirst(Activity smartDetailActivity, FrameLayout loadingweb, String url,int index) {
+        if (TextUtils.isEmpty(url)) {
+            Toast.makeText(smartDetailActivity, "初始化出错，请退出重试", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (playParseUrl(smartDetailActivity, loadingweb, url,index)) return;
+        if (mAssist != null) {
+            mAssist.play();
+        }
 
     }
+
 
     private void refreshStartPosition(String url) {
         if (!TextUtils.isEmpty(url)) {
@@ -465,17 +458,16 @@ public class PlayerPresenter {
         if (isLandscape) {
             mAssist.getReceiverGroup().clearReceivers();
             mAssist.getReceiverGroup().addReceiver(DataInter.ReceiverKey.KEY_CONTROLLER_COVER, new ControllerCover(context));
-            receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
+            //   receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER, new GestureCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_LOADING_COVER, new LoadingCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AUTH_COVER, new AuthCover(context));
         } else {
             mAssist.getReceiverGroup().clearReceivers();
             mAssist.getReceiverGroup().addReceiver(DataInter.ReceiverKey.KEY_SMALL_CONTROLLER_COVER, new SmallControllerCover(context));
-            receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
+            // receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER, new GestureCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_LOADING_COVER, new LoadingCover(context));
-
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AUTH_COVER, new AuthCover(context));
         }
     }
@@ -540,28 +532,16 @@ public class PlayerPresenter {
                 }
             };
 
-    public void switchPlayFirst(Activity smartDetailActivity, FrameLayout loadingweb) {
-        String playUrl = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_URL);
-        if (TextUtils.isEmpty(playUrl)) {
-            Toast.makeText(smartDetailActivity, "初始化出错，请退出重试", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (playParseUrl(smartDetailActivity, loadingweb, playUrl)) return;
-        if (mAssist != null) {
-            mAssist.play();
-        }
 
-    }
 
-    private boolean playParseUrl(Activity smartDetailActivity, FrameLayout loadingweb, String playUrl) {
+    private boolean playParseUrl(Activity smartDetailActivity, FrameLayout loadingweb, String playUrl,int index) {
         if (playUrl.endsWith(".html")) {
-
             mAssist.pause();
             Toast.makeText(smartDetailActivity, "正在解析，请耐心等待", Toast.LENGTH_SHORT).show();
             ParsePlayUtils.getInstance().toParsePlay(smartDetailActivity, playUrl, loadingweb, new ParsePlayUtils.OnPlayUrlFindListener() {
                 @Override
                 public void onFindUrl(String url) {
-                    switchPlay(url, 0);
+                    switchPlay(url, index);
                 }
 
                 @Override
@@ -570,6 +550,8 @@ public class PlayerPresenter {
                 }
             });
             return true;
+        }else{
+            switchPlay(playUrl,index);
         }
         return false;
     }

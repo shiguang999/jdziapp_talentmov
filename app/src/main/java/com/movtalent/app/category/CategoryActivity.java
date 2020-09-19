@@ -1,8 +1,11 @@
 package com.movtalent.app.category;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v4.app.FragmentActivity;
@@ -12,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -71,6 +75,7 @@ public class CategoryActivity extends AppCompatActivity {
         activity.startActivity(intent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +100,7 @@ public class CategoryActivity extends AppCompatActivity {
         // 形式
         String[] mainTab =  App_Config.MAIN_CONFIG;
 
+
         //地区都一样
         String[] areaTabMov = App_Config.AREA_CONFIG;
 
@@ -103,26 +109,19 @@ public class CategoryActivity extends AppCompatActivity {
         /**
          * 类型是根据主tab动态改变的
          */
-        ArrayList<VideoTypeVo.ClassBean> movie = UrlConfig.movie;//电影
-        /*if(null != movie && !"全部类别".equals(movie.get(0).getType_name())){
-            VideoTypeVo.ClassBean bean = new VideoTypeVo.ClassBean();
-            bean.setType_id(0);
-            bean.setType_name("全部类别");
-            movie.add(0, bean);
-        }*/
+        ArrayList<VideoTypeVo.ClassBean> movie = UrlConfig.movie;
+        VideoTypeVo.ClassBean bean = new VideoTypeVo.ClassBean();
+        bean.setType_id(0);
+        bean.setType_name("全部类别");
+        movie.add(0, bean);
 
-
-        ArrayList<VideoTypeVo.ClassBean> seri = UrlConfig.seri;//电视剧
-        /*if(null != seri && !"全部类别".equals(seri.get(0).getType_name())){
-            VideoTypeVo.ClassBean seriBean = new VideoTypeVo.ClassBean();
-            seriBean.setType_id(0);
-            seriBean.setType_name("全部类别");
-            seri.add(0, seriBean);
-        }*/
-
+        ArrayList<VideoTypeVo.ClassBean> seri = UrlConfig.seri;
+        VideoTypeVo.ClassBean seriBean = new VideoTypeVo.ClassBean();
+        seriBean.setType_id(0);
+        seriBean.setType_name("全部类别");
+        seri.add(0, seriBean);
 
         movTabAdapter = new CateTabAdapter2(movie, (position, content) -> {
-            System.out.println(position);
             requestTypeId = position == 0 ? 0 : content.getType_id();
             typeContent = content.getType_name();
             refreshData();

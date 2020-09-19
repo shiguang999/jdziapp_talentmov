@@ -1,5 +1,6 @@
 package com.movtalent.app.presenter;
 
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.movtalent.app.http.ApiService;

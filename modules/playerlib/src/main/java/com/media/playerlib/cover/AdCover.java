@@ -33,7 +33,6 @@ import com.media.playerlib.manager.AdManager;
 import com.media.playerlib.manager.RxCountDown;
 import com.media.playerlib.model.AdConfigDto;
 import com.media.playerlib.model.DataInter;
-import com.media.playerlib.widget.AdWebviewClient;
 import com.media.playerlib.widget.GlobalDATA;
 
 import java.util.Timer;

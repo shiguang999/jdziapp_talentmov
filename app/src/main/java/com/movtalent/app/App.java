@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.lib.common.BuildConfig;
 import com.media.playerlib.PlayApp;
 import com.movtalent.app.util.MapBuilder;
 import com.simple.spiderman.SpiderMan;

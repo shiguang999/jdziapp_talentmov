@@ -19,8 +19,11 @@ import com.movtalent.app.adapter.shop.VipBrandSection;
 import com.movtalent.app.adapter.shop.VipBrandSectionViewBinder;
 import com.movtalent.app.model.dto.PayLogDto;
 import com.movtalent.app.model.vo.VipVo;
+import com.movtalent.app.presenter.CoinPresenter;
 import com.movtalent.app.presenter.VipPresenter;
+import com.movtalent.app.presenter.iview.ICoin;
 import com.movtalent.app.presenter.iview.IVipView;
+import com.movtalent.app.util.UserUtil;
 
 import java.util.ArrayList;
 

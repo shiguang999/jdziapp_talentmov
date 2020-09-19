@@ -4,8 +4,10 @@ package com.movtalent.app.http;
 import android.content.Context;
 import android.os.Build;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.movtalent.app.App;
+import com.movtalent.app.App_Config;
 import com.movtalent.app.util.NetUtil;
 import com.movtalent.app.util.ToastUtil;
 
@@ -63,7 +65,7 @@ public class BaseApi {
     }
 
 
-    // 执行网络请求
+    //执行网络请求
     public static <T> void request(Observable<T> observable,
                                    final IResponseListener<T> listener) {
 //        if (isWifiProxy(App.getContext())) {

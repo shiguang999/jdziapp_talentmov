@@ -9,13 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.lib.common.util.DataInter;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.movtalent.app.R;
+import com.movtalent.app.db.HistoryDBhelper;
 import com.movtalent.app.model.vo.CommonVideoVo;
 import com.lib.common.util.tool.StringUtil;
+import com.movtalent.app.presenter.FavorPresenter;
+import com.movtalent.app.presenter.iview.IFavor;
+import com.movtalent.app.util.ToastUtil;
 import com.movtalent.app.view.OnlineDetailPageActivity;
 
 import java.text.SimpleDateFormat;
@@ -69,8 +76,11 @@ public class OnlineSearchAdapter extends RecyclerView.Adapter {
         builder.append("简介：" + datas.get(position).getMovDesc());
 
         ((SearchItemHolder) holder).vodDesc.setText(builder.toString());
-        RequestOptions requestOptions = new RequestOptions();
+
+        RoundedCorners roundedCorners = new RoundedCorners(10);
+        RequestOptions requestOptions = RequestOptions.bitmapTransform(roundedCorners);
         requestOptions.placeholder(R.drawable.tupian);
+
         Glide.with(context).load(imgUrl).transition(DrawableTransitionOptions.withCrossFade(300)).apply(requestOptions).into(((SearchItemHolder) holder).itemPoster);
 
         ((SearchItemHolder) holder).movName.setText(datas.get(position).getMovName());
@@ -94,7 +104,6 @@ public class OnlineSearchAdapter extends RecyclerView.Adapter {
         intent.putExtra(DataInter.KEY.VOD_ID, Integer.parseInt(vodId));
         context.startActivity(intent);
     }
-
 
     @Override
     public int getItemCount() {

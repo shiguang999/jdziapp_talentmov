@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.interfaces.OnConfirmListener;
@@ -97,7 +98,7 @@ public class SearchPrepareFragment extends Fragment implements ISearch {
 
     private void initHistory() {
         ArrayList<SearchHistoryInfo> history = DbHelper.getAllHistory();
-        //最近搜索词
+        //推荐搜索词
         ArrayList<String> words = new ArrayList<>();
         for (SearchHistoryInfo dataBean : history) {
             words.add(dataBean.searchKeyWords);

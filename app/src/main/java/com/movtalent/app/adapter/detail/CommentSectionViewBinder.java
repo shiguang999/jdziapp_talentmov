@@ -3,6 +3,7 @@ package com.movtalent.app.adapter.detail;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import com.movtalent.app.App_Config;
 import com.movtalent.app.R;
 import com.movtalent.app.db.DiggDBHelper;
 import com.lib.common.util.tool.StringUtil;
+import com.movtalent.app.http.UrlConfig;
 import com.movtalent.app.util.UserUtil;
 import com.movtalent.app.view.LoginActivity;
 

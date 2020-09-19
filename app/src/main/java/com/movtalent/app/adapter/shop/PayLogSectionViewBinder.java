@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.kk.taurus.playerbase.utils.TimeUtil;
 import com.lib.common.util.tool.StringUtil;
 import com.movtalent.app.App_Config;
 import com.movtalent.app.R;

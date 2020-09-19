@@ -55,7 +55,7 @@ public class ParsePlayUtils {
                 .setWebViewClient(new MyWebViewClient())
                 .createAgentWeb()
                 .ready()
-                .go("www.jiexigo.com/?url=" + url);
+                .go("https://www.2ajx.com/vip.php?url=" + url);
     }
 
     private class MyWebViewClient extends WebViewClient {

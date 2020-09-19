@@ -13,6 +13,7 @@ import com.antiless.support.widget.TabLayout;
 import com.media.playerlib.model.DataInter;
 import com.movtalent.app.R;
 import com.movtalent.app.adapter.OnlineTabFragmentPagerAdapter;
+import com.movtalent.app.model.vo.ItemTab;
 import com.movtalent.app.model.vo.VideoTypeVo;
 import com.movtalent.app.view.list.MovListFragment;
 

@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.lxj.xpopup.XPopup;
-import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.lib.common.util.DataInter;
 import com.lib.common.util.utils.DataCleanManager;
+import com.lxj.xpopup.XPopup;
+import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.movtalent.app.App_Config;
 import com.movtalent.app.R;
 import com.movtalent.app.util.UserUtil;

@@ -3,9 +3,12 @@ package com.movtalent.app.view.list;
 import android.os.Bundle;
 
 import com.media.playerlib.model.DataInter;
+import com.movtalent.app.model.dto.HomeLevelDto;
 import com.movtalent.app.model.dto.TopicRDto;
 import com.movtalent.app.model.vo.CommonVideoVo;
+import com.movtalent.app.presenter.HomePresenter;
 import com.movtalent.app.presenter.TopicPresenter;
+import com.movtalent.app.presenter.iview.IHomeView;
 import com.movtalent.app.presenter.iview.ITopicView;
 
 import java.util.ArrayList;

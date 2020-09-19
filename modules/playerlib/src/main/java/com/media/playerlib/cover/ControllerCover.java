@@ -23,10 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.kk.taurus.playerbase.entity.DataSource;
 import com.kk.taurus.playerbase.event.BundlePool;
 import com.kk.taurus.playerbase.event.EventKey;
 import com.kk.taurus.playerbase.event.OnPlayerEventListener;
+
 import com.kk.taurus.playerbase.log.PLog;
 import com.kk.taurus.playerbase.player.IPlayer;
 import com.kk.taurus.playerbase.player.OnTimerUpdateListener;
@@ -37,7 +37,7 @@ import com.kk.taurus.playerbase.utils.TimeUtil;
 import com.lib.common.util.AppUtils;
 import com.media.playerlib.R;
 import com.media.playerlib.adapter.PlayListAdapter;
-import com.media.playerlib.manager.ParsePlayUtils;
+import com.media.playerlib.manager.PlayerPresenter;
 import com.media.playerlib.model.DataInter;
 import com.media.playerlib.model.VideoPlayVo;
 import com.media.playerlib.receiver.BatteryReceiver;
@@ -66,6 +66,7 @@ import static com.media.playerlib.model.DataInter.Key.KEY_WINDOW_MODE;
 public class ControllerCover extends BaseCover implements OnTimerUpdateListener, OnTouchGestureListener, View.OnClickListener {
 
 
+    private static final String TAG ="播放控制" ;
     /**
      * 全局播放索引，0开始，显示时记得加1
      */
@@ -185,9 +186,7 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
         sendDanmu.setOnClickListener(this);
         playNext.setOnClickListener(this);
         mSeekBar.setOnSeekBarChangeListener(onSeekBarChangeListener);
-
         getGroupValue().registerOnGroupValueUpdateListener(mOnGroupValueUpdateListener);
-
         mLock.setOnClickListener(this);
     }
 
@@ -208,6 +207,7 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
         setTitle(title);
         //获取全局播放信息
         String onlineMovie = getGroupValue().getString(DataInter.Key.MOVIE_INFO);
+       // Log.d("全局信息", onlineMovie);
         setChoseList(onlineMovie);
     }
 
@@ -346,7 +346,7 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
         }
     };
 
-    private void setTitle(final String text) {
+    private void setTitle(String text) {
         mTopTitle.post(new Runnable() {
             @Override
             public void run() {
@@ -761,7 +761,6 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
             getGroupValue().putBoolean(DataInter.Key.KEY_GESTURE_ENABLE, false);
         }
     }
-
     private void playNextFilm() {
         String currentUrl = getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_URL);
         if (videoPlayVo != null && videoPlayVo.getSeriUrls().size() > 1) {
@@ -775,7 +774,6 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
                             setTitle(String.format(Locale.getDefault(), "%s 第%d集", title, finalI + 1));
                             getGroupValue().putString(DataInter.Key.KEY_CURRENTPLAY_TITLE, String.format(Locale.getDefault(), "%s 第%d集", title, finalI + 1));
                             getGroupValue().putString(DataInter.Key.KEY_CURRENTPLAY_URL, nextUrl);
-
                             Bundle bundle = new Bundle();
                             bundle.putString(DataInter.Key.KEY_CURRENTPLAY_URL, nextUrl);
                             notifyReceiverEvent(DataInter.Event.EVENT_CODE_SERI_NEXT, bundle);
@@ -783,6 +781,7 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
                             //更新当前播放索引
                             ControllerCover.CurrentIndex = finalI + 1;
                             getGroupValue().putInt(DataInter.Key.KEY_CURRENTPLAY_INDEX, CurrentIndex);
+                            Log.d(TAG, "run: "+currentUrl);
 
                         }
                     });
@@ -821,6 +820,7 @@ public class ControllerCover extends BaseCover implements OnTimerUpdateListener,
 
     // 全屏选集
     private void showChoseListWindow() {
+
         final AnyLayer anyLayer = AnyLayer.with(getContext())
                 .contentView(R.layout.play_list_layout)
                 .gravity(Gravity.RIGHT)

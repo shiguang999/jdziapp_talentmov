@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.lxj.xpopup.XPopup;
 import com.lxj.xpopup.impl.CenterListPopupView;
 import com.lxj.xpopup.interfaces.OnSelectListener;
+
 import com.media.playerlib.widget.GlobalDATA;
 import com.movtalent.app.R;
 import com.movtalent.app.adapter.event.OnSeriClickListener;
@@ -27,7 +29,8 @@ import me.drakeet.multitype.ItemViewBinder;
  * createTime 2019-09-15
  */
 public class DetailPlaySectionViewBinder extends ItemViewBinder<DetailPlaySection, DetailPlaySectionViewBinder.ViewHolder> {
-
+    private int index; //用来判断数组是否越界
+    private String TAG="DetailPlaySectionViewBinder";
     @NonNull
     @Override
     protected ViewHolder onCreateViewHolder(@NonNull LayoutInflater inflater, @NonNull ViewGroup parent) {
@@ -59,11 +62,21 @@ public class DetailPlaySectionViewBinder extends ItemViewBinder<DetailPlaySectio
                         new OnSelectListener() {
                             @Override
                             public void onSelect(int position, String text) {
-                                holder.setData(holder.itemView.getContext(),
-                                        movPlayUrlList.get(position), detailPlaySection.getClickListener(), detailPlaySection.getGroupPlay());
-                                detailPlaySection.getClickListener().switchPlay(movPlayUrlList.get(position).get(GlobalDATA.PLAY_INDEX).getPlayUrl(), GlobalDATA.PLAY_INDEX,position);
+                                holder.playRes.setText("切换线路："+from[position]);
+                                //如果链接的数量比当前播放链接的位置 小，赋小值
+                                holder.setData(holder.itemView.getContext(), movPlayUrlList.get(position), detailPlaySection.getClickListener(), detailPlaySection.getGroupPlay());
+                                //播放监听
+                                if (movPlayUrlList.size()<GlobalDATA.PLAY_INDEX){
+                                    detailPlaySection.getClickListener().switchPlay(movPlayUrlList.get(position).get(0).getPlayUrl(), GlobalDATA.PLAY_INDEX,position);
+                                   // Log.d(TAG, "onSelect: "+movPlayUrlList.get(position).get(0).getPlayUrl());
+                                }
+                                    detailPlaySection.getClickListener().switchPlay(movPlayUrlList.get(position).get(GlobalDATA.PLAY_INDEX).getPlayUrl(), GlobalDATA.PLAY_INDEX,position);
+                                   // Log.d(TAG, "onSelect: "+movPlayUrlList.get(position).get(GlobalDATA.PLAY_INDEX).getPlayUrl());
+
                                 getAdapter().notifyDataSetChanged();
+
                                 detailPlaySection.setGroupPlay(position);
+
                             }
                         });
                 popupView.setCheckedPosition(detailPlaySection.getGroupPlay());
@@ -77,6 +90,8 @@ public class DetailPlaySectionViewBinder extends ItemViewBinder<DetailPlaySectio
         RecyclerView playList;
         TextView seeMore;
         TextView playRes;
+        private String TAG = "选集";
+
 
         ViewHolder(View itemView) {
             super(itemView);
@@ -86,11 +101,13 @@ public class DetailPlaySectionViewBinder extends ItemViewBinder<DetailPlaySectio
         }
 
         public void setData(Context context, ArrayList<VideoVo> videoVos, OnSeriClickListener clickListener, int groupPlay) {
+
             PlayListAdapter playListAdapter = new PlayListAdapter(videoVos, clickListener,groupPlay);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
             linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
             playList.setLayoutManager(linearLayoutManager);
             playList.setAdapter(playListAdapter);
+            playListAdapter.notifyDataSetChanged();
         }
     }
 

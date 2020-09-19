@@ -1,5 +1,7 @@
 package com.movtalent.app.presenter;
 
+import android.widget.Toast;
+
 import com.movtalent.app.http.ApiService;
 import com.movtalent.app.http.BaseApi;
 import com.movtalent.app.model.dto.SearchWdDto;
@@ -11,7 +13,7 @@ import com.movtalent.app.presenter.iview.ISearch;
  * @author huangyong
  * createTime 2019-09-15
  */
-public class SearchPresenter  {
+public class SearchPresenter {
 
     private ISearch iSearch;
 

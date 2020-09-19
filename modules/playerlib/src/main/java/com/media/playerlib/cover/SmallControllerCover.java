@@ -55,8 +55,7 @@ public class SmallControllerCover extends BaseCover implements OnTimerUpdateList
     private final int MSG_CODE_DELAY_HIDDEN_CONTROLLER = 101;
 
 
-    int EVENT_CODE_UPDATE_SEEK = -201;
-    String KEY_IS_LANDSCAPE = "isLandscape";
+    private String KEY_IS_LANDSCAPE = "isLandscape";
 
     String KEY_DATA_SOURCE = "data_source";
 
@@ -563,6 +562,7 @@ public class SmallControllerCover extends BaseCover implements OnTimerUpdateList
     @Override
     public Bundle onPrivateEvent(int eventCode, Bundle bundle) {
 
+        int EVENT_CODE_UPDATE_SEEK = -201;
         if (eventCode == EVENT_CODE_UPDATE_SEEK) {
             if (bundle != null) {
                 int curr = bundle.getInt(EventKey.INT_ARG1);

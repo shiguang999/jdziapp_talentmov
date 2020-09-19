@@ -2,11 +2,13 @@ package com.movtalent.app.util;
 
 import android.content.Context;
 import android.text.TextUtils;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.lib.common.util.DataInter;
 import com.lib.common.util.SharePreferencesUtil;
 import com.movtalent.app.App;
+import com.movtalent.app.http.UrlConfig;
 import com.movtalent.app.model.dto.BuyVipDto;
 import com.movtalent.app.model.dto.LoginDto;
 import com.movtalent.app.model.dto.PointDto;

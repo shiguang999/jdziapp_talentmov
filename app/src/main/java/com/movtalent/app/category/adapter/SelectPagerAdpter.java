@@ -1,5 +1,7 @@
 package com.movtalent.app.category.adapter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

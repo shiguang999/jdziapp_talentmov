@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
+import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.ViewGroup;
@@ -12,8 +13,10 @@ import android.webkit.WebResourceRequest;
 import android.webkit.WebResourceResponse;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 
 import com.just.agentweb.AgentWeb;
+
 
 /**
  * @author huangyong
@@ -42,7 +45,6 @@ public class ParsePlayUtils {
 
     public interface OnPlayUrlFindListener {
         void onFindUrl(String url);
-
         void onError();
     }
 
@@ -50,11 +52,12 @@ public class ParsePlayUtils {
 
     public void toParsePlay(Activity activity, String url, ViewGroup viewGroup, OnPlayUrlFindListener findListener) {
         this.findListener = findListener;
-        AgentWeb.with(activity).setAgentWebParent(viewGroup, viewGroup.getLayoutParams()).useDefaultIndicator()
+        AgentWeb.with(activity).setAgentWebParent(viewGroup, new LinearLayout.LayoutParams(0,0)).useDefaultIndicator()
                 .setWebViewClient(new MyWebViewClient())
                 .createAgentWeb()
                 .ready()
-                .go("https://jiexi.380k.com/?url=" + url);
+                .go("https://www.qianyicp.com/jiexi/?url=" + url);
+
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -72,7 +75,7 @@ public class ParsePlayUtils {
 
         @Override
         public void onPageFinished(WebView view, String url) {
-
+           // view.stopLoading();
         }
 
         @Override
@@ -102,15 +105,6 @@ public class ParsePlayUtils {
             return super.shouldInterceptRequest(view, request);
         }
 
-        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-            if (request.getUrl().toString().startsWith("intent") || request.getUrl().toString().startsWith("youku")) {
-                return true;
-            } else {
-                return super.shouldOverrideUrlLoading(view, request);
-            }
-        }
 
     }
 
@@ -119,7 +113,7 @@ public class ParsePlayUtils {
     private void newLink(String url) {
         if (url.length() < 5) return;
         if (url.equals(mlink)) return;
-
+        Log.d("我", "newLink: "+url);
         mlink = url;
         String type = "";
         if (findListener == null) {
@@ -127,9 +121,6 @@ public class ParsePlayUtils {
         }
         try {
             type = parseSuffix(url);
-            if (type.equals("js") || type.equals("css") || type.equals("html") || type.equals("ico")) {
-                return;
-            }
             if (type.equals("m3u8")) {
                 findListener.onFindUrl(url);
                 Log.e("getplayurls", url + "");
@@ -159,7 +150,6 @@ public class ParsePlayUtils {
 
         t1 = StringUtil.getTextRight(con, ".");
         if (t1 == null || t1.length() > 5) t1 = StringUtil.getTextRight(con, "/");
-
 
         con = t1;
         return con;

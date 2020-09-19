@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.just.agentweb.AgentWeb;
+
 import com.lib.common.util.DataInter;
 import com.movtalent.app.App_Config;
 import com.movtalent.app.R;
@@ -65,7 +66,6 @@ public class WebDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     @Override

@@ -15,12 +15,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
+import com.leaf.library.StatusBarUtil;
 import com.lib.common.util.DataInter;
 import com.movtalent.app.R;
 import com.movtalent.app.adapter.HomePagerAdpter;
 import com.movtalent.app.category.CategoryActivity;
 import com.movtalent.app.http.UrlConfig;
 import com.movtalent.app.model.vo.VideoTypeVo;
+import com.movtalent.app.util.UserUtil;
 import com.movtalent.app.view.list.MovListFragment;
 
 import java.util.ArrayList;
@@ -66,6 +68,8 @@ public class HomeMainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_tab_layout, container, false);
         unbinder = ButterKnife.bind(this, view);
         initview();
+        StatusBarUtil.setGradientColor(getActivity(), toobar);
+
         return view;
     }
 
@@ -77,18 +81,14 @@ public class HomeMainFragment extends Fragment {
             return;
         }
 
-        ArrayList<VideoTypeVo.ClassBean> movie = new ArrayList<>(); // 电影分类
-        VideoTypeVo.ClassBean bean = new VideoTypeVo.ClassBean();
+        ArrayList<VideoTypeVo.ClassBean> movie = new ArrayList<>(); //电影分类 6
+        /*VideoTypeVo.ClassBean bean = new VideoTypeVo.ClassBean();
         bean.setType_id(6);
         bean.setType_name("全部类别");
-        movie.add(0, bean);
-        ArrayList<VideoTypeVo.ClassBean> seris = new ArrayList<>(); // 电视剧分类
-        VideoTypeVo.ClassBean seriBean = new VideoTypeVo.ClassBean();
-        seriBean.setType_id(13);
-        seriBean.setType_name("全部类别");
-        seris.add(0, seriBean);
-        ArrayList<VideoTypeVo.ClassBean> currtoon = new ArrayList<>();
-        ArrayList<VideoTypeVo.ClassBean> show = new ArrayList<>();
+        movie.add(0, bean);*/
+        ArrayList<VideoTypeVo.ClassBean> seris = new ArrayList<>();  //电视剧分类 13
+        ArrayList<VideoTypeVo.ClassBean> cartoon = new ArrayList<>();   //动漫分类
+        ArrayList<VideoTypeVo.ClassBean> show = new ArrayList<>(); // 综艺分类
 
 
         ArrayList<Fragment> arrayList = new ArrayList<>();
@@ -108,8 +108,8 @@ public class HomeMainFragment extends Fragment {
                 UrlConfig.movie = movie;
             }
             if (classInfo.getType_name().contains("动漫")) {
-                currtoon.add(classInfo);
-                UrlConfig.curtoon = currtoon;
+                cartoon.add(classInfo);
+                UrlConfig.curtoon = cartoon;
             }
             if (classInfo.getType_name().contains("综艺")) {
                 show.add(classInfo);
@@ -134,11 +134,11 @@ public class HomeMainFragment extends Fragment {
         arrayList.add(seriTabRoot);
 
 
-        if (currtoon.size() > 1) {
-            MovieRootFragment curtoonTabRoot = MovieRootFragment.newInstance(currtoon);
+        if (cartoon.size() > 1) {
+            MovieRootFragment curtoonTabRoot = MovieRootFragment.newInstance(cartoon);
             arrayList.add(curtoonTabRoot);
         } else {
-            MovListFragment listFragment = MovListFragment.newInstance(currtoon.get(0).getType_id());
+            MovListFragment listFragment = MovListFragment.newInstance(cartoon.get(0).getType_id());
             arrayList.add(listFragment);
         }
 
@@ -165,4 +165,5 @@ public class HomeMainFragment extends Fragment {
         super.onDestroyView();
         unbinder.unbind();
     }
+
 }

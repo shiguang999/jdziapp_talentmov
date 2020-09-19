@@ -2,6 +2,7 @@ package com.movtalent.app.model.vo;
 
 import android.util.SparseArray;
 
+import com.google.gson.Gson;
 import com.movtalent.app.model.VideoVo;
 import com.movtalent.app.model.dto.VideoListDto;
 import com.movtalent.app.util.PlayUrlUtils;

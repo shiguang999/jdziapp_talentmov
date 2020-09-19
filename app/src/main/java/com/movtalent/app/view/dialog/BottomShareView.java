@@ -13,6 +13,7 @@ import com.lib.common.util.DataInter;
 import com.movtalent.app.R;
 import com.movtalent.app.presenter.CoinPresenter;
 import com.movtalent.app.presenter.iview.ICoin;
+import com.movtalent.app.third.MyShareListener;
 import com.movtalent.app.util.ToastUtil;
 import com.movtalent.app.util.UserUtil;
 

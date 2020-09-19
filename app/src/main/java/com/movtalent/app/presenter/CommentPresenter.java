@@ -6,6 +6,7 @@ import com.movtalent.app.model.dto.CommentDDto;
 import com.movtalent.app.model.dto.CommentDto;
 import com.movtalent.app.model.dto.CommentGDto;
 import com.movtalent.app.model.vo.CommentVo;
+import com.movtalent.app.model.vo.CommonVideoVo;
 import com.movtalent.app.presenter.iview.ICView;
 import com.movtalent.app.util.ToastUtil;
 import com.movtalent.app.util.UserUtil;

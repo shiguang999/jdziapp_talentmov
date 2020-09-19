@@ -6,15 +6,18 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.media.playerlib.model.DataInter;
 import com.movtalent.app.R;
 import com.movtalent.app.adapter.OnlineCategoryAdapter;
 import com.movtalent.app.model.vo.CommonVideoVo;
+import com.movtalent.app.presenter.MovieListPresenter;
 import com.movtalent.app.presenter.iview.IListView;
 
 import java.util.ArrayList;

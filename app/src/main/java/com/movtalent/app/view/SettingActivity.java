@@ -11,6 +11,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -101,14 +102,14 @@ public class SettingActivity extends AppCompatActivity {
                     UserProfileActivity.start(SettingActivity.this);
             }));
         }
-        String[] arr = {"MediaPlayer解码","ExoPlayer解码","IjkPlayer解码"};
+        String[] arr = {"IjkPlayer解码","ExoPlayer解码","MediaPlayer解码"};
         items.add(new TextItemSection("播放器设置", () -> {
             CenterListPopupView listPopupView = new XPopup.Builder(this).asCenterList("切换解码器", arr, new OnSelectListener() {
                 @Override
                 public void onSelect(int position, String text) {
                     switch (position) {
                         case 0:
-                            PlayApp.swich(PlayApp.PLAN_ID_MEDIA);
+                            PlayApp.swich(PlayApp.PLAN_ID_IJK);
                             SharePreferencesUtil.setIntSharePreferences(SettingActivity.this,DataInter.KEY.PLAY_CODEC,0);
                             break;
                         case 1:
@@ -116,7 +117,7 @@ public class SettingActivity extends AppCompatActivity {
                             SharePreferencesUtil.setIntSharePreferences(SettingActivity.this,DataInter.KEY.PLAY_CODEC,1);
                             break;
                         case 2:
-                            PlayApp.swich(PlayApp.PLAN_ID_IJK);
+                            PlayApp.swich(PlayApp.PLAN_ID_MEDIA);
                             SharePreferencesUtil.setIntSharePreferences(SettingActivity.this,DataInter.KEY.PLAY_CODEC,2);
                             break;
                     }

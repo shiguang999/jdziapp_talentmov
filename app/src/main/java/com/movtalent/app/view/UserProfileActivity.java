@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -77,11 +78,7 @@ public class UserProfileActivity extends AppCompatActivity {
         items = new ArrayList<>();
 
         for (int i = 0; i < 8; i++) {
-            IconSection iconSection = new IconSection(i, clickListener);
-            /*if (i==5){
-                iconSection.setChosed(true);
-            }*/
-            items.add(iconSection);
+            items.add(new IconSection(i, clickListener));
         }
         multiTypeAdapter.setItems(items);
 
