@@ -20,7 +20,16 @@ android {
         manifestPlaceholders = ["tencentAuthId": "1109823571"]
         multiDexEnabled true
         ndk {
-            abiFilters "armeabi", "armeabi-v7a"
+            splits {
+                abi {
+                    reset()//重置 ABI 列表为只包含一个空字符串（与 include 一起使用可以表示要使用哪一个 ABI，而不是要 exclude 哪些 ABI）
+                    enable true // 设为true，才能启用ABI拆分机制在打包时根据架构生成不同的apk文件
+                    universalApk false  // If true, 构建支持所有平台abi类型，构建一个包，包含多个架构的so(只要代码中有的都会打进去)
+                    include "armeabi-v7a", "armeabi" // 设置所有要支持的abi类型，构建多个包，每个包只包含一个架构的so
+                    exclude "x86"   // 设置所有不要支持的abi类型
+                }
+            }
+            
         }
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         lintOptions {
@@ -98,10 +107,11 @@ dependencies {
     implementation 'com.yanzhenjie:sofia:1.0.5'
     //调色板
     implementation 'com.android.support:palette-v7:28.0.0'
-
+    //渐变状态栏
+    implementation 'com.github.Ye-Miao:StatusBarUtil:1.7.5'
     //tablayout
     //对话框
-    implementation 'com.lxj:xpopup:1.6.7'
+    implementation 'com.lxj:xpopup:1.8.10'
     //加载状态
     implementation 'com.billy.android:gloading:1.0.0'
     implementation('com.squareup.retrofit2:converter-simplexml:2.1.0') {
