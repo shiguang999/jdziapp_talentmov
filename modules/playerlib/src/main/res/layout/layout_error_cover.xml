@@ -43,6 +43,6 @@
         android:src="@drawable/ic_left_back"
         android:id="@+id/exit_play"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="30dp"
         android:layout_height="24dp"/>
 </RelativeLayout>
