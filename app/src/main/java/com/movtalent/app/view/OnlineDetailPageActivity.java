@@ -40,6 +40,7 @@ import com.media.playerlib.manager.PlayerPresenter;
 import com.media.playerlib.model.AdConfigDto;
 import com.media.playerlib.model.VideoPlayVo;
 import com.media.playerlib.widget.GlobalDATA;
+import com.movtalent.app.App_Config;
 import com.movtalent.app.R;
 import com.movtalent.app.adapter.DetailAdSection;
 import com.movtalent.app.adapter.DetailAdSectionViewBinder;
@@ -103,6 +104,7 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
  * createTime 2019-09-14
  */
 public class OnlineDetailPageActivity extends AppCompatActivity implements IDetailView, IRecView, View.OnClickListener {
+    public static Boolean IsJx = App_Config.IS_JX;
     private VideoPlayVo videoPlayVo;
     private String PathUrl ="";
     private int groupPlay = 0;
@@ -311,7 +313,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
 
         globalVideoVo = commonVideoVo;
         videoPlayVo = new VideoPlayVo();
-        playerPresenter.initView(OnlineDetailPageActivity.this, videoContainer, fullContainer, authCode);
+        playerPresenter.initView(OnlineDetailPageActivity.this, videoContainer, fullContainer, authCode, IsJx);
         videoPlayVo.setVodId(Integer.parseInt(commonVideoVo.getMovId()));
         videoPlayVo.setTitle(commonVideoVo.getMovName());
         for (int i = 0; i < commonVideoVo.getMovPlayUrlList().get(groupPlay).size(); i++) {
@@ -323,7 +325,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         playerPresenter.configOrientationSensor(OnlineDetailPageActivity.this);
         playerPresenter.setPlayListener(playListener);
 
-        if (commonVideoVo.getMovPlayUrlList().get(groupPlay).get(0).getPlayUrl().endsWith(".html")) {
+        if (commonVideoVo.getMovPlayUrlList().get(groupPlay).get(0).getPlayUrl().endsWith(".html") || IsJx) {
             ParsePlayUtils.getInstance().toParsePlay(OnlineDetailPageActivity.this, commonVideoVo.getMovPlayUrlList().get(groupPlay).get(0).getPlayUrl(),
                     videoContainer, new ParsePlayUtils.OnPlayUrlFindListener() {
                         @Override

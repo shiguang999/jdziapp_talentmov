@@ -59,6 +59,7 @@ public class PlayerPresenter {
     private Context context;
     private RelationAssist mAssist;
     private EventDispatcher dispatcher;
+    private boolean isjx;
     /**
      * 视频填充比，填充布局
      */
@@ -83,11 +84,12 @@ public class PlayerPresenter {
 
     private int authCode;
 
-    public void initView(Context context, final FrameLayout container, FrameLayout fullContainer, int authCode) {
+    public void initView(Context context, final FrameLayout container, FrameLayout fullContainer, int authCode, boolean isjx) {
         this.container = container;
         this.fullContent = fullContainer;
         this.context = context;
         this.authCode = authCode;
+        this.isjx = isjx;
         originHeight = container.getHeight();
         container.post(() -> originHeight = container.getHeight());
 
@@ -123,7 +125,7 @@ public class PlayerPresenter {
                     DataSource dataSource = new DataSource();
                     String playUrl = bundle.getString(DataInter.Key.KEY_CURRENTPLAY_URL);
                     int anInt = mAssist.getReceiverGroup().getGroupValue().getInt(DataInter.Key.KEY_CURRENTPLAY_INDEX);
-                    if (playUrl.endsWith(".html")) {
+                    if (playUrl.endsWith(".html") || isjx) {
                         switchPlayFirst((Activity)context,(FrameLayout) container,playUrl,anInt);
                         return;
                     }
@@ -469,14 +471,14 @@ public class PlayerPresenter {
         if (isLandscape) {
             mAssist.getReceiverGroup().clearReceivers();
             mAssist.getReceiverGroup().addReceiver(DataInter.ReceiverKey.KEY_CONTROLLER_COVER, new ControllerCover(context));
-            receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
+//            receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER, new GestureCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_LOADING_COVER, new LoadingCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AUTH_COVER, new AuthCover(context));
         } else {
             mAssist.getReceiverGroup().clearReceivers();
             mAssist.getReceiverGroup().addReceiver(DataInter.ReceiverKey.KEY_SMALL_CONTROLLER_COVER, new SmallControllerCover(context));
-            receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
+//            receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER, new GestureCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_LOADING_COVER, new LoadingCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AUTH_COVER, new AuthCover(context));
@@ -546,7 +548,7 @@ public class PlayerPresenter {
 
 
     private boolean playParseUrl(Activity smartDetailActivity, FrameLayout loadingweb, String playUrl,int index) {
-        if (playUrl.endsWith(".html")) {
+        if (playUrl.endsWith(".html") || isjx) {
             mAssist.pause();
             Toast.makeText(smartDetailActivity, "正在解析，请耐心等待", Toast.LENGTH_SHORT).show();
             ParsePlayUtils.getInstance().toParsePlay(smartDetailActivity, playUrl, loadingweb, new ParsePlayUtils.OnPlayUrlFindListener() {

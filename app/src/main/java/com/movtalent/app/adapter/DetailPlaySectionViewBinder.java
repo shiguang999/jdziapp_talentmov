@@ -62,7 +62,7 @@ public class DetailPlaySectionViewBinder extends ItemViewBinder<DetailPlaySectio
                         new OnSelectListener() {
                             @Override
                             public void onSelect(int position, String text) {
-//                                holder.playRes.setText("切换线路："+from[position]);
+                                holder.playRes.setText("切换线路："+from[position]);
                                 //如果链接的数量比当前播放链接的位置 小，赋小值
                                 holder.setData(holder.itemView.getContext(), movPlayUrlList.get(position), detailPlaySection.getClickListener(), detailPlaySection.getGroupPlay());
                                 //播放监听

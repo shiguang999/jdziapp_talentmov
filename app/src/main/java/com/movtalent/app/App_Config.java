@@ -153,6 +153,11 @@ public class App_Config {
      */
     public static final String QQ_QUN = "512193231";
 
+    /**
+     * 是否解析
+     */
+    public static final boolean IS_JX = true;
+
     public static final String JUMP_URL_3 = BASE_URL;
     public static final String JUMP_URL_2 = BASE_URL + "app/fzlc/index.html";//成长历程
     public static final String JUMP_URL_1 = BASE_URL;//官网
