@@ -26,6 +26,7 @@ import com.movtalent.app.category.adapter.CateTabAdapter;
 import com.movtalent.app.category.adapter.CateTabAdapter2;
 import com.movtalent.app.http.UrlConfig;
 import com.movtalent.app.model.vo.VideoTypeVo;
+import com.movtalent.app.util.UserUtil;
 import com.movtalent.app.view.list.CategoryListFragment;
 
 import java.util.ArrayList;
@@ -98,7 +99,7 @@ public class CategoryActivity extends AppCompatActivity {
         requestYear = 0;
 
         // 形式
-        String[] mainTab =  App_Config.MAIN_CONFIG;
+        String[] mainTab = UserUtil.isWealAuth() ? App_Config.MAIN_CONFIG : App_Config.DEFAULT_MAIN_CONFIG;
 
 
         //地区都一样
@@ -183,6 +184,20 @@ public class CategoryActivity extends AppCompatActivity {
                     areaCatTab.setVisibility(View.VISIBLE);
                     requestTypeId = 3;
                     typeContent="综艺";
+                    break;
+                case 5:
+                    //伦理，隐藏类别列表，更换地区数据
+                    typeCatTab.setVisibility(View.GONE);
+                    areaCatTab.setVisibility(View.VISIBLE);
+                    requestTypeId = 20;
+                    typeContent="伦理";
+                    break;
+                case 6:
+                    //ASMR，隐藏类别列表，更换地区数据
+                    typeCatTab.setVisibility(View.GONE);
+                    areaCatTab.setVisibility(View.VISIBLE);
+                    requestTypeId = 21;
+                    typeContent="ASMR";
                     break;
                 default:
                     //全部分类，显示类别列表

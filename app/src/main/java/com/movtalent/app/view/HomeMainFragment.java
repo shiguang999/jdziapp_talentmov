@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,8 @@ public class HomeMainFragment extends Fragment {
         ArrayList<VideoTypeVo.ClassBean> seris = new ArrayList<>();  //电视剧分类 13
         ArrayList<VideoTypeVo.ClassBean> cartoon = new ArrayList<>();   //动漫分类
         ArrayList<VideoTypeVo.ClassBean> show = new ArrayList<>(); // 综艺分类
+        ArrayList<VideoTypeVo.ClassBean> ethic = new ArrayList<>(); // 伦理分类
+        ArrayList<VideoTypeVo.ClassBean> asmr = new ArrayList<>(); // ASMR分类
 
 
         ArrayList<Fragment> arrayList = new ArrayList<>();
@@ -116,6 +119,15 @@ public class HomeMainFragment extends Fragment {
                 show.add(classInfo);
                 UrlConfig.show = show;
             }
+            if (classInfo.getType_name().contains("伦理")) {
+                ethic.add(classInfo);
+                UrlConfig.ethic = ethic;
+            }
+            if (classInfo.getType_name().contains("ASMR")) {
+                asmr.add(classInfo);
+                UrlConfig.asmr = asmr;
+            }
+
 
         }
 
@@ -150,6 +162,27 @@ public class HomeMainFragment extends Fragment {
             MovListFragment listFragment = MovListFragment.newInstance(show.get(0).getType_id());
             arrayList.add(listFragment);
         }
+
+        if(UserUtil.isWealAuth()){
+            if (ethic.size() > 1) {
+                MovieRootFragment ethicTabRoot = MovieRootFragment.newInstance(ethic);
+                arrayList.add(ethicTabRoot);
+            } else {
+                MovListFragment listFragment = MovListFragment.newInstance(ethic.get(0).getType_id());
+                arrayList.add(listFragment);
+            }
+        }
+
+        if(UserUtil.isWealAuth()){
+            if (asmr.size() > 1) {
+                MovieRootFragment asmrTabRoot = MovieRootFragment.newInstance(asmr);
+                arrayList.add(asmrTabRoot);
+            } else {
+                MovListFragment listFragment = MovListFragment.newInstance(asmr.get(0).getType_id());
+                arrayList.add(listFragment);
+            }
+        }
+
 
         HomePagerAdpter homePagerAdpter = new HomePagerAdpter(getChildFragmentManager(), arrayList, getActivity());
         tabVp.setAdapter(homePagerAdpter);

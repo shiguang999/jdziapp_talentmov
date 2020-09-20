@@ -181,4 +181,16 @@ public class UserUtil {
         }
         return "";
     }
+
+    // 是否是黑金会员
+    public static boolean isWealAuth() {
+        if (UserUtil.isLogin() && UserUtil.getGroupId() > 3) {
+            String vipEndTime = UserUtil.getUserVipEndTime();
+            if (TextUtils.isEmpty(vipEndTime)) {
+                return false;
+            }
+            return (Long.parseLong(vipEndTime) > (System.currentTimeMillis() / 1000));
+        }
+        return false;
+    }
 }

@@ -17,7 +17,7 @@ public class App_Config {
     /**
      * 主分类配置，不建议修改
      */
-    public static final String[] TAB_ARR = {"推荐", "电影", "电视剧", "动漫", "综艺"};
+    public static final String[] TAB_ARR = {"推荐", "电影", "电视剧", "动漫", "综艺", "伦理", "ASMR"};
 
 
     /**
@@ -104,6 +104,17 @@ public class App_Config {
 
 
     /**
+     * 默认分类筛选页面的形式配置，这个就自己写吧，读服务器没意义，看下影片都有哪些形式
+     */
+    public static final String[] DEFAULT_MAIN_CONFIG = {
+            "全部形式",
+            "电影",
+            "电视剧",
+            "动漫",
+            "综艺"
+    };
+
+    /**
      * 分类筛选页面的形式配置，这个就自己写吧，读服务器没意义，看下影片都有哪些形式
      */
     public static final String[] MAIN_CONFIG = {
@@ -111,7 +122,9 @@ public class App_Config {
             "电影",
             "电视剧",
             "动漫",
-            "综艺"
+            "综艺",
+            "伦理",
+            "ASMR"
     };
 
     /**

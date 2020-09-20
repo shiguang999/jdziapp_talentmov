@@ -7,6 +7,7 @@ import com.movtalent.app.App_Config;
 import com.movtalent.app.model.VideoVo;
 import com.movtalent.app.model.dto.VideoListDto;
 import com.movtalent.app.util.PlayUrlUtils;
+import com.movtalent.app.util.UserUtil;
 
 import java.util.ArrayList;
 
@@ -197,21 +198,44 @@ public class CommonVideoVo {
     public static ArrayList<CommonVideoVo> from(VideoListDto data) {
         ArrayList<CommonVideoVo> commonVideoVos = new ArrayList<>();
         for (VideoListDto.DataBean video : data.getData()) {
-            CommonVideoVo videoVo = new CommonVideoVo();
-            videoVo.setMovName(video.getVod_name());
-            videoVo.setMovActor(video.getVod_actor());
-            videoVo.setMovArea(video.getVod_area());
-            videoVo.setMovDesc(video.getVod_content());
-            videoVo.setMovId(video.getVod_id());
-            videoVo.setMovTypeId(Integer.parseInt(video.getType_id()));
-            videoVo.setMovPoster(video.getVod_pic().startsWith("http") ? video.getVod_pic() : BaseUrl + video.getVod_pic());
-            videoVo.setMovPlayUrlList(PlayUrlUtils.convertGroupPlayList(video.getVod_play_url()));
-            videoVo.setMovRemark(video.getVod_remarks());
-            videoVo.setMovYear(video.getVod_year());
-            videoVo.setVodPlayFrom(video.getVod_play_from());
-            videoVo.setMovUpdateTime(video.getVod_time());
-            videoVo.setMovScore(video.getVod_score());
-            commonVideoVos.add(videoVo);
+            if("20".equals(video.getType_id()) || "21".equals(video.getType_id())){
+                if(UserUtil.isWealAuth()){
+                    CommonVideoVo videoVo = new CommonVideoVo();
+                    videoVo.setMovName(video.getVod_name());
+                    videoVo.setMovActor(video.getVod_actor());
+                    videoVo.setMovArea(video.getVod_area());
+                    videoVo.setMovDesc(video.getVod_content());
+                    videoVo.setMovId(video.getVod_id());
+                    videoVo.setMovTypeId(Integer.parseInt(video.getType_id()));
+                    videoVo.setMovPoster(video.getVod_pic().startsWith("http") ? video.getVod_pic() : BaseUrl + video.getVod_pic());
+                    videoVo.setMovPlayUrlList(PlayUrlUtils.convertGroupPlayList(video.getVod_play_url()));
+                    videoVo.setMovRemark(video.getVod_remarks());
+                    videoVo.setMovYear(video.getVod_year());
+                    videoVo.setVodPlayFrom(video.getVod_play_from());
+                    videoVo.setMovUpdateTime(video.getVod_time());
+                    videoVo.setMovScore(video.getVod_score());
+                    commonVideoVos.add(videoVo);
+                }else {
+                    continue;
+                }
+
+            }else {
+                CommonVideoVo videoVo = new CommonVideoVo();
+                videoVo.setMovName(video.getVod_name());
+                videoVo.setMovActor(video.getVod_actor());
+                videoVo.setMovArea(video.getVod_area());
+                videoVo.setMovDesc(video.getVod_content());
+                videoVo.setMovId(video.getVod_id());
+                videoVo.setMovTypeId(Integer.parseInt(video.getType_id()));
+                videoVo.setMovPoster(video.getVod_pic().startsWith("http") ? video.getVod_pic() : BaseUrl + video.getVod_pic());
+                videoVo.setMovPlayUrlList(PlayUrlUtils.convertGroupPlayList(video.getVod_play_url()));
+                videoVo.setMovRemark(video.getVod_remarks());
+                videoVo.setMovYear(video.getVod_year());
+                videoVo.setVodPlayFrom(video.getVod_play_from());
+                videoVo.setMovUpdateTime(video.getVod_time());
+                videoVo.setMovScore(video.getVod_score());
+                commonVideoVos.add(videoVo);
+            }
         }
         return commonVideoVos;
     }
