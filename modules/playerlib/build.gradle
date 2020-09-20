@@ -46,5 +46,6 @@ dependencies {
     //exo
     api 'cn.jiajunhui:exoplayer:335_291_009'
     implementation project(':modules:common')
+//    implementation project(':modules:clinglibrary')
     api 'com.android.support:recyclerview-v7:28.0.0'
 }
