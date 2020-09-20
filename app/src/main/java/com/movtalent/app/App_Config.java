@@ -23,21 +23,24 @@ public class App_Config {
     /**
      * 友盟统计key
      */
-    public static final String UMENKEY = "5db8f7ca0cafb294cd000838";
+//    public static final String UMENKEY = "5d904dcb3fc195c774000b0e";//追剧达人
+    public static final String UMENKEY = "5e2306e4cb23d2a435000295";//金豆子视频
     /**
      * 友盟统计app渠道名
      */
-    public static final String UMEN_APP_NAME = "movtalent";
+    public static final String UMEN_APP_NAME = "movjdzi";
     /**
      * 友盟推送app key
      */
-    public static final String UMEN_PUSH_KEY = "4b3893e95500500c2c2f88069e56da0c";
+//    public static final String UMEN_PUSH_KEY = "4b3893e95500500c2c2f88069e56da0c";
+    public static final String UMEN_PUSH_KEY = "1aea0bd74a1510657a6061344a70a4b4";
 
 
     /**
      * qq分享 appId
      */
-    public static final String QQ_APP_ID = "1109823571";
+//    public static final String QQ_APP_ID = "1109823571";//追剧达人
+    public static final String QQ_APP_ID = "1105923666";//金豆子视频
     public static final String QQ_APP_SCOP = "get_user_info,"
             + "get_simple_userinfo,"
             + "add_share,"
@@ -47,12 +50,15 @@ public class App_Config {
      * 微信分享、朋友圈分享 appId
      * 替换为自己申请的账户信息
      */
-    public static final String WEICHAT_APP_ID = "wxd2069b96357bdfe7";
-    public static final String WEICHAT_APP_SECRET = "89bc6b30bb7c750798296a7897bf8235";
+    /*public static final String WEICHAT_APP_ID = "wxd2069b96357bdfe7";//追剧达人
+    public static final String WEICHAT_APP_SECRET = "89bc6b30bb7c750798296a7897bf8235";*/
+    public static final String WEICHAT_APP_ID = "wx0ba98111e3acf48c";//金豆子视频
+    public static final String WEICHAT_APP_SECRET = "9d04e4e393c668c1ce8542c075b1721b";
+
     /**
      * 微博分享 配置
      */
-    public static final String WEIBO_APP_KEY = "xxxxxxxxxxxx";
+    public static final String WEIBO_APP_KEY = "3881135066";//金豆子视频
     public static final String WEIBO_APP_SCOP = "friendships_groups_read,"
             + "friendships_groups_write,"
             + "statuses_to_me_read,"
@@ -69,7 +75,7 @@ public class App_Config {
     /**
      * 开屏页地址
      */
-    public static final String SPLAH_URL = "http://www.baidu.com";
+    public static final String SPLAH_URL = BASE_URL;
 
     /**
      * 内置头像，可自己替换

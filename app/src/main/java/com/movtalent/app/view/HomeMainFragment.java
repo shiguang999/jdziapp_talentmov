@@ -68,7 +68,8 @@ public class HomeMainFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_tab_layout, container, false);
         unbinder = ButterKnife.bind(this, view);
         initview();
-        StatusBarUtil.setGradientColor(getActivity(), toobar);
+        // 设置导航栏渐变，有个问题：没用预留的状态栏位置
+//        StatusBarUtil.setGradientColor(getActivity(), toobar);
 
         return view;
     }

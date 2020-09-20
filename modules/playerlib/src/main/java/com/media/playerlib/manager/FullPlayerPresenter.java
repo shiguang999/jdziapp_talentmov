@@ -28,6 +28,7 @@ import com.lib.common.util.data.PlayRecordInfo;
 import com.lib.common.util.room.RecordDao;
 import com.lib.common.util.tool.StringUtil;
 import com.media.playerlib.cover.ControllerCover;
+import com.media.playerlib.cover.ErrorCover;
 import com.media.playerlib.cover.GestureCover;
 import com.media.playerlib.cover.LoadingCover;
 import com.media.playerlib.model.DataInter;
@@ -63,7 +64,7 @@ public class FullPlayerPresenter {
         this.context = context;
 
         receiverGroup = new ReceiverGroup(null);
-     //   receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
+        receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
         receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER, new GestureCover(context));
         receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_LOADING_COVER, new LoadingCover(context));
 
@@ -79,8 +80,11 @@ public class FullPlayerPresenter {
         mAssist.attachContainer(fullContent);
         changeMode(true);
 
+        initDlans(context);
     }
 
+    private void initDlans(Context context) {
+    }
     OnAssistPlayEventHandler eventHandler = new OnAssistPlayEventHandler() {
         @Override
         public void onAssistHandle(AssistPlay assist, int eventCode, Bundle bundle) {
@@ -106,6 +110,9 @@ public class FullPlayerPresenter {
                             2.0f
                     };
                     mAssist.setSpeed(speedItem[speedUp]);
+                    break;
+                case DataInter.Event.EVENT_CODE_TO_DLAN_CAST:
+                    showDlan();
                     break;
                 case DataInter.Event.EVENT_CODE_SAVE_PROGRESS:
                     String url = bundle.getString(DataInter.Key.KEY_CURRENTPLAY_URL);
@@ -170,7 +177,26 @@ public class FullPlayerPresenter {
         }
     }
 
+    /**
+     * Dlan投屏窗口
+     */
+    private void showDlan() {
 
+        String currentUrl = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_URL);
+        String currentTitle = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_TITLE);
+        if (TextUtils.isEmpty(currentUrl)) {
+            Toast.makeText(context, "投屏功能暂不可用", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        //http://192.168.1.4:55679/video/storage/emulated/0/BTDownloadCloud
+
+        //   /storage/emulated/0/M3u8Downloader/e71e44608e8388cc9f0ae39f738296ab/local.m3u8
+        if (currentUrl.startsWith("https://") || currentUrl.startsWith("http://")) {
+
+        }else {
+            Toast.makeText(context, "暂不支持本地文件投屏", Toast.LENGTH_SHORT).show();
+        }
+    }
 
 
     /**
@@ -364,7 +390,13 @@ public class FullPlayerPresenter {
             mAssist.getReceiverGroup().getGroupValue().putString(DataInter.Key.KEY_CURRENTPLAY_URL, url);
             mAssist.getReceiverGroup().getGroupValue().putInt(DataInter.Key.KEY_CURRENTPLAY_INDEX, index);
             mAssist.play();
+
+            resetAdCover();
         }
+    }
+
+    private void resetAdCover() {
+        dispatcher.dispatchReceiverEvent(DataInter.Event.KEY_SHOW_AD,null);
     }
 
     private void refreshStartPosition(String url) {

@@ -3,6 +3,7 @@ package com.movtalent.app.model.vo;
 import android.util.SparseArray;
 
 import com.google.gson.Gson;
+import com.movtalent.app.App_Config;
 import com.movtalent.app.model.VideoVo;
 import com.movtalent.app.model.dto.VideoListDto;
 import com.movtalent.app.util.PlayUrlUtils;
@@ -18,6 +19,7 @@ import java.util.ArrayList;
  * 不至于接口变了，UI改起来费劲
  */
 public class CommonVideoVo {
+    public static String BaseUrl = App_Config.BASE_URL;
 
     private String movTypeName;
     private String movName;
@@ -202,7 +204,7 @@ public class CommonVideoVo {
             videoVo.setMovDesc(video.getVod_content());
             videoVo.setMovId(video.getVod_id());
             videoVo.setMovTypeId(Integer.parseInt(video.getType_id()));
-            videoVo.setMovPoster(video.getVod_pic());
+            videoVo.setMovPoster(video.getVod_pic().startsWith("http") ? video.getVod_pic() : BaseUrl + video.getVod_pic());
             videoVo.setMovPlayUrlList(PlayUrlUtils.convertGroupPlayList(video.getVod_play_url()));
             videoVo.setMovRemark(video.getVod_remarks());
             videoVo.setMovYear(video.getVod_year());

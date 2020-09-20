@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.lib.common.util.DataInter;
+import com.movtalent.app.App_Config;
 import com.movtalent.app.R;
 import com.movtalent.app.model.VideoList;
 import com.movtalent.app.model.dto.VideoListDto;
@@ -26,6 +27,7 @@ import me.drakeet.multitype.ItemViewBinder;
  * 每个section含有6个item，为了保证顺序，这样来搞
  */
 public class ItemVideosViewBinder extends ItemViewBinder<VideoListDto.DataBean, ItemVideosViewBinder.ViewHolder> {
+    public static String BaseUrl = App_Config.BASE_URL;
 
     @NonNull
     @Override
@@ -36,7 +38,7 @@ public class ItemVideosViewBinder extends ItemViewBinder<VideoListDto.DataBean, 
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, @NonNull VideoListDto.DataBean itemVideo) {
-        Glide.with(holder.itemView.getContext()).load(itemVideo.getVod_pic()).into(holder.cover);
+        Glide.with(holder.itemView.getContext()).load(itemVideo.getVod_pic().startsWith("http") ? itemVideo.getVod_pic() : BaseUrl + itemVideo.getVod_pic()).into(holder.cover);
         holder.title.setText(itemVideo.getVod_name() + "");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

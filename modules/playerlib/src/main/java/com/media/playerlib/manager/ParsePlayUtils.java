@@ -16,6 +16,7 @@ import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 
 import com.just.agentweb.AgentWeb;
+import com.media.playerlib.PlayApp_Config;
 
 
 /**
@@ -23,6 +24,7 @@ import com.just.agentweb.AgentWeb;
  * createTime 2019-09-10
  */
 public class ParsePlayUtils {
+    public static String JxUrl = PlayApp_Config.JX_URL;
 
     private static volatile ParsePlayUtils playUtilsl;
 
@@ -56,7 +58,7 @@ public class ParsePlayUtils {
                 .setWebViewClient(new MyWebViewClient())
                 .createAgentWeb()
                 .ready()
-                .go("https://www.qianyicp.com/jiexi/?url=" + url);
+                .go(JxUrl + url);
 
     }
 
