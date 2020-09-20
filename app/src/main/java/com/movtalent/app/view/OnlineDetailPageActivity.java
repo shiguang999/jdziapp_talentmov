@@ -1,6 +1,10 @@
 package com.movtalent.app.view;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -33,9 +37,12 @@ import com.lxj.xpopup.interfaces.OnConfirmListener;
 import com.media.playerlib.PlayApp;
 import com.media.playerlib.manager.ParsePlayUtils;
 import com.media.playerlib.manager.PlayerPresenter;
+import com.media.playerlib.model.AdConfigDto;
 import com.media.playerlib.model.VideoPlayVo;
 import com.media.playerlib.widget.GlobalDATA;
 import com.movtalent.app.R;
+import com.movtalent.app.adapter.DetailAdSection;
+import com.movtalent.app.adapter.DetailAdSectionViewBinder;
 import com.movtalent.app.adapter.DetailDescSection;
 import com.movtalent.app.adapter.DetailDescSectionViewBinder;
 import com.movtalent.app.adapter.DetailPlaySection;
@@ -126,6 +133,20 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
     private CommonVideoVo globalVideoVo;
     private String TAG = "播放页";
 
+    BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if (intent.getAction().equals(DataInter.KEY.ACTION_REFRESH_COIN)) {
+                if (playerPresenter != null) {
+                    if (UserUtil.checkAuth()) {
+                        playerPresenter.setAuthCode(PlayApp.AUTH_ALL);
+//                        playerPresenter.restart();
+                    }
+                }
+            }
+        }
+    };
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -148,6 +169,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         detailContent.setAdapter(detailAdapter);
 
         detailAdapter.register(DetailDescSection.class, new DetailDescSectionViewBinder());
+        detailAdapter.register(DetailAdSection.class, new DetailAdSectionViewBinder());// 播放页广告
         detailAdapter.register(DetailPlaySection.class, new DetailPlaySectionViewBinder());
         detailAdapter.register(DetailRecmmendSection.class, new DetailRecmmendSectionViewBinder());
         detailAdapter.register(FooterView.class, new FooterViewViewBinder());
@@ -167,7 +189,14 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         initFavorAbout();
         initCommentAbout();
         initLisener();
+        registReceiver();
+    }
 
+    private void registReceiver() {
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(DataInter.KEY.ACTION_REFRESH_COIN);
+        intentFilter.addAction(DataInter.KEY.ACTION_EXIT_LOGIN);
+        registerReceiver(receiver, intentFilter);
     }
 
 
@@ -241,7 +270,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
     }
 
     private void loadDetail(CommonVideoVo commonVideoVo) {
-
+        AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
         DetailDescSection detailDescSection = new DetailDescSection(commonVideoVo, new OnDetailClickListener() {
             @Override
             public void clickReport(String vodId) {
@@ -265,6 +294,8 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         });
         items.add(detailDescSection);
         detailAdapter.notifyItemChanged(0);
+        if(dataBean.getAd_detail().getShow()) items.add(new DetailAdSection());
+        detailAdapter.notifyItemChanged(1);
     }
 
     private void loadPlay(CommonVideoVo commonVideoVo) {
@@ -357,6 +388,7 @@ public class OnlineDetailPageActivity extends AppCompatActivity implements IDeta
         if (playerPresenter != null) {
             playerPresenter.destroy();
         }
+        unregisterReceiver(receiver);
         super.onDestroy();
     }
 

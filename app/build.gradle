@@ -111,7 +111,7 @@ dependencies {
     implementation 'com.github.Ye-Miao:StatusBarUtil:1.7.5'
     //tablayout
     //对话框
-    implementation 'com.lxj:xpopup:1.8.10'
+    implementation 'com.lxj:xpopup:1.6.7'
     //加载状态
     implementation 'com.billy.android:gloading:1.0.0'
     implementation('com.squareup.retrofit2:converter-simplexml:2.1.0') {

@@ -160,7 +160,7 @@ public abstract class ContentBrowseActionCallback extends Browse {
         treeModel.insertNodeInto(childNode, treeNode, index);
     }
 
-    public abstract void updateStatusUI(Status status, DefaultMutableTreeNode treeNode, DefaultTreeModel treeModel);
+    public abstract void updateStatusUI(Status status, DefaultMutableTreeNode  treeNode, DefaultTreeModel treeModel);
 
     public abstract void failureUI(String failureMessage);
 }

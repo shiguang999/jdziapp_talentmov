@@ -33,6 +33,7 @@ import com.lib.common.util.data.PlayRecordInfo;
 import com.lib.common.util.room.RecordDao;
 import com.lib.common.util.tool.StringUtil;
 import com.media.playerlib.PlayApp;
+import com.media.playerlib.cover.AdCover;
 import com.media.playerlib.cover.AuthCover;
 import com.media.playerlib.cover.ControllerCover;
 import com.media.playerlib.cover.ErrorCover;
@@ -40,6 +41,7 @@ import com.media.playerlib.cover.GestureCover;
 import com.media.playerlib.cover.LoadingCover;
 import com.media.playerlib.cover.SmallControllerCover;
 
+import com.media.playerlib.model.AdConfigDto;
 import com.media.playerlib.model.DataInter;
 import com.media.playerlib.model.VideoPlayVo;
 import com.media.playerlib.widget.GlobalDATA;
@@ -419,6 +421,15 @@ public class PlayerPresenter {
 
     }
 
+    private void resetAdCover() {
+        AdConfigDto.DataBean dataBean = new Gson().fromJson(GlobalDATA.AD_INFO, AdConfigDto.DataBean.class);
+        mAssist.reset();
+        if(dataBean.getAd_player().getShow()) receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AD_COVER, new AdCover(context)); // 播放器广告
+        dispatcher.dispatchReceiverEvent(DataInter.Event.KEY_SHOW_AD, null);
+//        dispatcher.dispatchReceiverEvent(DataInter.Event.RESTART_PLAY, null);
+
+    }
+
 
     private void refreshStartPosition(String url) {
         if (!TextUtils.isEmpty(url)) {
@@ -458,14 +469,14 @@ public class PlayerPresenter {
         if (isLandscape) {
             mAssist.getReceiverGroup().clearReceivers();
             mAssist.getReceiverGroup().addReceiver(DataInter.ReceiverKey.KEY_CONTROLLER_COVER, new ControllerCover(context));
-            //   receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
+            receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER, new GestureCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_LOADING_COVER, new LoadingCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AUTH_COVER, new AuthCover(context));
         } else {
             mAssist.getReceiverGroup().clearReceivers();
             mAssist.getReceiverGroup().addReceiver(DataInter.ReceiverKey.KEY_SMALL_CONTROLLER_COVER, new SmallControllerCover(context));
-            // receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
+            receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_ERROR_COVER, new ErrorCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_GESTURE_COVER, new GestureCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_LOADING_COVER, new LoadingCover(context));
             receiverGroup.addReceiver(DataInter.ReceiverKey.KEY_AUTH_COVER, new AuthCover(context));
