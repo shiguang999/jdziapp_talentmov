@@ -13,5 +13,6 @@ public class PlayApp_Config {
      * 视频解析接口
      */
     public static final String JX_URL = "https://www.qianyicp.com/jiexi/?url=";
+//    public static final String JX_URL = "http://api.v6.chat/?url=";
 
 }

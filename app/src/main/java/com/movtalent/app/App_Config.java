@@ -13,6 +13,8 @@ public class App_Config {
      * 服务器所有请求依赖的主域名，为cms接口系统安装的地址
      */
     public static final String BASE_URL = "http://shiguang512.f3322.net:5052/";
+//    public static final String BASE_URL = "http://nas.jdouzi.net:5052/";
+//    public static final String BASE_URL = "http://ys.jdouzi.net/";
 
     /**
      * 主分类配置，不建议修改

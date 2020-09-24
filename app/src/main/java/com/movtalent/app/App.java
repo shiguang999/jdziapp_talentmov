@@ -54,12 +54,12 @@ public class App extends Application {
         mPushAgent.register(new IUmengRegisterCallback() {
             @Override
             public void onSuccess(String s) {
-                Log.e("umentregist","注册成功：deviceToken：-------->  " + s);
+                Log.e("umentregist","友盟统计注册成功：deviceToken：-------->  " + s);
             }
 
             @Override
             public void onFailure(String s, String s1) {
-                Log.e("umentregist","注册失败：deviceTokens：-------->  " + s);
+                Log.e("umentregist","友盟统计注册失败：deviceTokens：-------->  " + s);
             }
         });
         mPushAgent.setMessageHandler(messageHandler);
