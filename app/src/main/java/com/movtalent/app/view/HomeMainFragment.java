@@ -85,7 +85,7 @@ public class HomeMainFragment extends Fragment {
 
         ArrayList<VideoTypeVo.ClassBean> movie = new ArrayList<>(); //电影分类 6
         /*VideoTypeVo.ClassBean bean = new VideoTypeVo.ClassBean();
-        bean.setType_id(6);
+        bean.setType_id(1);
         bean.setType_name("全部类别");
         movie.add(0, bean);*/
         ArrayList<VideoTypeVo.ClassBean> seris = new ArrayList<>();  //电视剧分类 13

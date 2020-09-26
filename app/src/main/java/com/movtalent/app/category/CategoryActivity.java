@@ -156,7 +156,7 @@ public class CategoryActivity extends AppCompatActivity {
                     typeContent="全部分类";
                     break;
                 case 1:
-                    //电视剧显示类别列表
+                    //电影显示类别列表
                     typeCatTab.setVisibility(View.VISIBLE);
                     areaCatTab.setVisibility(View.VISIBLE);
                     CategoryActivity.this.movTabAdapter.setData(movie);
@@ -164,7 +164,7 @@ public class CategoryActivity extends AppCompatActivity {
                     typeContent="电影";
                     break;
                 case 2:
-                    //电影，显示类别列表
+                    //电视剧，显示类别列表
                     typeCatTab.setVisibility(View.VISIBLE);
                     areaCatTab.setVisibility(View.VISIBLE);
                     CategoryActivity.this.movTabAdapter.setData(seri);
