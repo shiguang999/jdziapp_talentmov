@@ -43,7 +43,7 @@ public class SplashActivity extends AppCompatActivity implements ITypeView {
     LinearLayout iconAbout;
     @BindView(R.id.time_cut)
     TextView timeCut;
-    private int recLen = 5;//跳过倒计时提示5秒
+    private int recLen = 3;//跳过倒计时提示5秒
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
