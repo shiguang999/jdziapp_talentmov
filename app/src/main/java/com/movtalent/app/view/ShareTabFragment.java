@@ -93,7 +93,7 @@ public class ShareTabFragment extends Fragment {
         ArrayList<Object> items = new ArrayList<>();
 
 
-        vipHeaderSection = new VipHeaderSection(listener, "23");
+        vipHeaderSection = new VipHeaderSection(listener, UserUtil.getUserCoin());
 
         VipShareItemSectionn sectionn = new VipShareItemSectionn("分享下载二维码", R.drawable.share_code_drawable, "每日分享下载二维码","+50金币", position -> {
             final Bitmap thumbBmp = ((BitmapDrawable) getResources().getDrawable(R.drawable.share)).getBitmap();
