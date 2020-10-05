@@ -41,6 +41,7 @@ import com.media.playerlib.cover.GestureCover;
 import com.media.playerlib.cover.LoadingCover;
 import com.media.playerlib.cover.SmallControllerCover;
 
+import com.media.playerlib.dlan.DlanListPop;
 import com.media.playerlib.model.AdConfigDto;
 import com.media.playerlib.model.DataInter;
 import com.media.playerlib.model.VideoPlayVo;
@@ -187,8 +188,8 @@ public class PlayerPresenter {
      * Dlan投屏窗口
      */
     private void showDlan() {
-        Toast.makeText(context, "投屏功能暂不可用", Toast.LENGTH_SHORT).show();
-        /*String currentUrl = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_URL);
+//        Toast.makeText(context, "投屏功能暂不可用", Toast.LENGTH_SHORT).show();
+        String currentUrl = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_URL);
         String currentTitle = mAssist.getReceiverGroup().getGroupValue().getString(DataInter.Key.KEY_CURRENTPLAY_TITLE);
         if (TextUtils.isEmpty(currentUrl)) {
             Toast.makeText(context, "投屏功能暂不可用", Toast.LENGTH_SHORT).show();
@@ -202,7 +203,7 @@ public class PlayerPresenter {
             new XPopup.Builder(context).
                     asCustom(dlanListPop).
                     show();
-        }*/
+        }
     }
 
 
