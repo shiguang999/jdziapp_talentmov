@@ -17,13 +17,13 @@
             android:screenOrientation="landscape"
             >
         </activity>
-        <!--<service
+        <service
             android:name="com.qingfeng.clinglibrary.service.ClingUpnpService"
             android:exported="false" />
         <service
             android:name="com.qingfeng.clinglibrary.service.SystemService"
             android:exported="false" />
-        <activity android:name=".dlan.MediaPlayActivity"/>-->
+        <activity android:name=".dlan.MediaPlayActivity"/>
     </application>
 
 </manifest>
